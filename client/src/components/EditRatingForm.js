@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 export default function EditRatingForm() {
@@ -7,11 +7,10 @@ export default function EditRatingForm() {
     let { rating_id_param } = useParams()
 
     const base_url = 'http://localhost:8080'
-    const rating_url = new URL('rating/' + rating_id_param, base_url)
     const currentDate = new Date().toISOString().split('T')[0];
 
 
-    const categories = [
+    const categories = useMemo(() => [
         'energy',
         'work/income',
         'partner',
@@ -22,7 +21,7 @@ export default function EditRatingForm() {
         'intel/acad',
         'giving_back',
         'hobbies',
-    ];
+    ], []);
 
     function get_formatted_date(date) {
         const year = date.getFullYear();
@@ -45,6 +44,7 @@ export default function EditRatingForm() {
     const [client_name, setClient_name] = useState('')
 
     useEffect(() => {
+        const rating_url = new URL('rating/' + rating_id_param, base_url)
         if (rating_id_param) {
             setRating_id(rating_id_param)
         }
@@ -72,7 +72,7 @@ export default function EditRatingForm() {
                 console.error('Error:', error);
                 console.log("server is down!!")
             })
-    }, [])
+    }, [rating_id_param, categories])
 
     const getCapitalizeString = (str) => {
         return str

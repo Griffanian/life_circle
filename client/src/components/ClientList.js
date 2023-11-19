@@ -1,5 +1,4 @@
-import e from "cors";
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { Link } from "react-router-dom";
 
 export default function ClientList() {
@@ -7,7 +6,7 @@ export default function ClientList() {
     const [clients, setCLients] = useState([])
 
     const base_url = 'http://localhost:8080'
-    const client_url = new URL('clients/', base_url)
+    const client_url = useMemo(() => new URL('clients/', base_url), [])
 
     useEffect(() => {
         fetch(client_url, {
@@ -28,7 +27,7 @@ export default function ClientList() {
                 console.error('Error:', error);
                 console.log("server is down!!")
             })
-    }, [])
+    }, [client_url])
 
     const deleteClient = (e) => {
         e.preventDefault()

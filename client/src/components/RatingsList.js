@@ -29,9 +29,10 @@ export default function RatingList() {
     const [ratings, setRatings] = useState([])
 
     const base_url = 'http://localhost:8080'
-    const rating_url = new URL(`ratings/${client_id_param}`, base_url)
+
 
     useEffect(() => {
+        const rating_url = new URL(`ratings/${client_id_param}`, base_url)
         fetch(rating_url, {
             method: "GET",
             headers: {
@@ -50,7 +51,7 @@ export default function RatingList() {
                 console.error('Error:', error);
                 console.log("server is down!!")
             })
-    }, [])
+    }, [client_id_param])
 
     const deleteRating = (e) => {
         e.preventDefault()

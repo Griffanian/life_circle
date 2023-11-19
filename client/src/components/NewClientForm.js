@@ -1,36 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
-export default function EditClientForm() {
+export default function NewClientForm() {
     const navigate = useNavigate()
-
-    let { client_id_param } = useParams()
-
     const base_url = 'http://localhost:8080'
-    const client_url = new URL('client/' + client_id_param, base_url)
+    const client_url = new URL('clients/', base_url)
 
     const [name, setName] = useState('')
-
-    useEffect(() => {
-        fetch(client_url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            credentials: "include",
-
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.ok) {
-                    setName(data.client_name)
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                console.log("server is down!!")
-            })
-    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -39,7 +15,7 @@ export default function EditClientForm() {
         };
 
         fetch(client_url, {
-            method: "PUT",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -64,7 +40,7 @@ export default function EditClientForm() {
         <>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <label>Name:
-                    <input value={name} onChange={(e) => setName(e.target.value)}></input>
+                    <input onChange={(e) => setName(e.target.value)}></input>
                 </label>
                 <input type="submit" value="Submit" />
             </form>

@@ -6,7 +6,6 @@ export default function NewRatingForm() {
     const navigate = useNavigate()
 
     const base_url = 'http://localhost:8080'
-    const client_url = new URL('clients/', base_url)
     const ratings_url = new URL('ratings/', base_url)
 
     const currentDate = new Date().toISOString().split('T')[0];
@@ -39,6 +38,7 @@ export default function NewRatingForm() {
     const [client_list, setClient_list] = useState([]);
 
     useEffect(() => {
+        const client_url = new URL('clients/', base_url)
         if (client_id_param) {
             setClient_id(client_id_param)
         }
@@ -60,7 +60,7 @@ export default function NewRatingForm() {
                 console.error('Error:', error);
                 console.log("server is down!!")
             })
-    }, [])
+    }, [client_id_param])
 
     const capitalizeString = (str) => {
         return str
