@@ -23,8 +23,8 @@ app.use(cors({
     credentials: true, // <= Accept credentials (cookies) sent by the client
 }))
 
-app.listen(8080, (err) => {
-    console.log('server listening on 8080')
+app.listen(process.env.PORT || 8080, (err) => {
+    console.log(`server listening on ${process.env.PORT || 8080}`)
 })
 
 const db = require('knex')({
