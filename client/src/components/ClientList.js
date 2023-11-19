@@ -8,14 +8,15 @@ export default function ClientList() {
     const base_url = 'https://circle-of-life.onrender.com'
     const client_url = useMemo(() => new URL('clients/', base_url), [])
 
+
     useEffect(() => {
         fetch(client_url, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Origin": base_url
             },
             credentials: "include",
-
         })
             .then(res => res.json())
             .then(data => {
