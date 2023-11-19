@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/life_circle/static/css/main.18be606a.css",
+    "main.js": "/life_circle/static/js/main.559c7d42.js",
+    "static/js/787.deb4498a.chunk.js": "/life_circle/static/js/787.deb4498a.chunk.js",
+    "index.html": "/life_circle/index.html",
+    "main.18be606a.css.map": "/life_circle/static/css/main.18be606a.css.map",
+    "main.559c7d42.js.map": "/life_circle/static/js/main.559c7d42.js.map",
+    "787.deb4498a.chunk.js.map": "/life_circle/static/js/787.deb4498a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.18be606a.css",
+    "static/js/main.559c7d42.js"
+  ]
+}
