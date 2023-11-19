@@ -14,7 +14,7 @@ export default function ClientList() {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                "Origin": base_url
+                "Origin": 'https://griffanian.github.io/build/'
             },
             credentials: "include",
         })
