@@ -36,7 +36,8 @@ export default function ClientList() {
         fetch(client_url, {
             method: "DELETE",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Origin": 'https://griffanian.github.io/'
             },
             credentials: "include",
 
