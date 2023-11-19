@@ -23,6 +23,12 @@ app.use(cors({
     credentials: true, // <= Accept credentials (cookies) sent by the client
 }))
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*'); // Adjust to limit access to specific origins
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
 app.listen(process.env.PORT || 8080, (err) => {
     console.log(`server listening on ${process.env.PORT || 8080}`)
 })
