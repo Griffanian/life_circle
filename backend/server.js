@@ -27,16 +27,17 @@ app.listen(8080, (err) => {
     console.log('server listening on 8080')
 })
 
-let db = require('knex')({
+const db = require('knex')({
     client: 'pg',
     version: '7.2',
     connection: {
-        host: 'localhost',
-        user: 'postgres',
-        password: '1234',
-        database: 'circle_of_life'
+        host: 'surus.db.elephantsql.com',
+        user: 'keocaula',
+        password: '51Ne1PfJRG0auTdAIVVh7-A8i4TCa2se',
+        database: 'keocaula',
     }
 });
+
 
 app.post('/clients', async function (req, res) {
     try {
@@ -260,9 +261,22 @@ app.get('/rating/:rating_id', async function (req, res) { //get a specific ratin
 app.post('/ratings', async function (req, res) {
     try {
         await db.transaction(async (trx) => {
+            const existing_rating = await trx
+                .select(...categories, 'rating_date', 'client_name')
+                .from('ratings')
+                .where({ rating_date: req.body.rating_date })
+                .leftJoin('clients', 'ratings.client_id', 'clients.client_id')
+
+            if (existing_rating.length > 0) {
+                return res.status(400).send({
+                    ok: false,
+                    message: 'rating already exist.',
+                })
+            }
 
             const new_rating_data = {
-                rating_date: req.body.rating_date
+                rating_date: req.body.rating_date,
+                client_id: req.body.client_id
             };
 
             categories.forEach(category => {
@@ -274,7 +288,6 @@ app.post('/ratings', async function (req, res) {
                 .returning('*');
 
             await trx.commit();
-            console.log(new_rating[0])
             res.status(200).send({
                 ok: true,
                 new_rating: new_rating[0],
