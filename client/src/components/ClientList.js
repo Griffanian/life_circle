@@ -5,7 +5,7 @@ export default function ClientList() {
 
     const [clients, setCLients] = useState([])
 
-    const base_url = 'http://localhost:8080'
+    const base_url = 'https://circle-of-life.onrender.com'
     const client_url = useMemo(() => new URL('clients/', base_url), [])
 
     useEffect(() => {

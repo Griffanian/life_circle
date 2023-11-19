@@ -5,7 +5,7 @@ export default function NewRatingForm() {
 
     const navigate = useNavigate()
 
-    const base_url = 'http://localhost:8080'
+    const base_url = 'https://circle-of-life.onrender.com'
     const ratings_url = new URL('ratings/', base_url)
 
     const currentDate = new Date().toISOString().split('T')[0];

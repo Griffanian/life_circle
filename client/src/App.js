@@ -13,6 +13,9 @@ import {
 
 const router = createBrowserRouter([
   {
+    path: "*",
+    element: <ClientList />,
+  }, {
     path: "addClient",
     element: <NewClientForm />,
   }, {
@@ -37,6 +40,7 @@ function App() {
   return (
     <div className='mainBody'>
       <RouterProvider router={router} />
+      {/* <p>hi</p> */}
     </div>
   );
 }

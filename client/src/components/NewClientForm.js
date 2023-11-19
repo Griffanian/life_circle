@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 export default function NewClientForm() {
     const navigate = useNavigate()
-    const base_url = 'http://localhost:8080'
+    const base_url = 'https://circle-of-life.onrender.com'
     const client_url = new URL('clients/', base_url)
 
     const [name, setName] = useState('')

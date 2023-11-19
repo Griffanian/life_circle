@@ -6,7 +6,7 @@ export default function EditClientForm() {
 
     let { client_id_param } = useParams()
 
-    const base_url = 'http://localhost:8080'
+    const base_url = 'https://circle-of-life.onrender.com'
     const client_url = useMemo(() => new URL('client/' + client_id_param, base_url), [client_id_param])
 
     const [name, setName] = useState('')

@@ -6,7 +6,7 @@ export default function EditRatingForm() {
     const navigate = useNavigate()
     let { rating_id_param } = useParams()
 
-    const base_url = 'http://localhost:8080'
+    const base_url = 'https://circle-of-life.onrender.com'
     const currentDate = new Date().toISOString().split('T')[0];
 
 

@@ -28,7 +28,7 @@ export default function RatingList() {
 
     const [ratings, setRatings] = useState([])
 
-    const base_url = 'http://localhost:8080'
+    const base_url = 'https://circle-of-life.onrender.com'
 
 
     useEffect(() => {
