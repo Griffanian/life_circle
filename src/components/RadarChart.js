@@ -2,21 +2,12 @@ import React from "react";
 import { Radar } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
+import { getBritishDateFormat } from "../frontEndFuncs/prettyFuncs";
+
 Chart.register(CategoryScale);
 
 export default function RadarChart(props) {
-    const categories = [
-        'energy',
-        'work/income',
-        'partner',
-        'children/next_gen',
-        'friends',
-        'life_attitude',
-        'family',
-        'intel/acad',
-        'giving_back',
-        'hobbies',
-    ];
+    const categories = process.env.REACT_APP_CATEGORIES.split(',');
 
     const rainbowColors = [
         [255, 0, 0],
@@ -27,14 +18,6 @@ export default function RadarChart(props) {
         [75, 0, 130],
         [128, 0, 128]
     ];
-
-    function getBritishDateFormat(item) {
-        const date = new Date(item); // Create a Date object with the current date/time
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // Month starts from 0, so add 1
-        const year = date.getFullYear();
-        return `${day}/${month}/${year}`;
-    }
 
     const datasets = props.ratings.map((rating, index) => {
         const color = rainbowColors[index % 7]

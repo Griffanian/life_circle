@@ -1,38 +1,23 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { createClient } from '../frontEndFuncs/clientFunc';
+
 
 export default function NewClientForm() {
+
     const navigate = useNavigate()
-    const base_url = 'https://circle-of-life.onrender.com'
-    const client_url = new URL('clients/', base_url)
 
     const [name, setName] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const bodyObj = {
+        createClient({
             client_name: name,
-        };
-
-        fetch(client_url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(bodyObj),
-            credentials: "include",
-
         })
-            .then(res => res.json())
             .then(data => {
-                if (data.ok) {
-                    console.log('ok')
+                if (data.ok === true) {
                     navigate('/clients')
                 }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                console.log("server is down!!")
             })
     }
 
