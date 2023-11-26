@@ -23,7 +23,7 @@ const EditRatingForm = () => {
     useEffect(() => {
         if (rating_id_param !== formData.rating_id) {
             getRating(rating_id_param)
-                .then((data) => {
+                .then(data => {
                     const formattedDate = getFormattedDate(new Date(data.rating_date));
                     setFormData({
                         ...formData,

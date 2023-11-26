@@ -70,7 +70,7 @@ async function editRating(bodyObj) {
 
     const ratings_url = new URL('ratings/', process.env.REACT_APP_BACKEND_URL)
 
-    fetch(ratings_url, {
+    return fetch(ratings_url, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
