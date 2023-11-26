@@ -82,10 +82,7 @@ async function editRating(bodyObj) {
         .then(res => res.json())
         .then(data => {
             if (data.ok) {
-                return {
-                    message: 'success',
-                    data: data,
-                }
+                return data
             }
         })
         .catch((error) => {

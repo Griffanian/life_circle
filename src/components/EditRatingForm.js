@@ -69,8 +69,8 @@ const EditRatingForm = () => {
         };
 
         editRating(bodyObj)
-            .then((res) => {
-                if (res.message === 'success') {
+            .then(data => {
+                if (data.ok) {
                     navigate(`/ratings/${formData.client_id}`);
                 }
             })
