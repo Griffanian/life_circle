@@ -7,7 +7,7 @@ const EditRatingForm = () => {
     const navigate = useNavigate();
     const { rating_id_param } = useParams();
     const currentDate = new Date().toISOString().split('T')[0];
-    const categories = process.env.REACT_APP_CATEGORIES.split(',');
+    const categories = process.env.REACT_APP_CATEGORIES.split(','); -
 
     const [formData, setFormData] = useState({
         ratings: categories.reduce((acc, category) => {
@@ -41,7 +41,6 @@ const EditRatingForm = () => {
                     console.error('Error fetching rating:', error);
                 });
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [rating_id_param]);
 
     const getFormattedDate = (date) => {
