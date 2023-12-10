@@ -56,9 +56,6 @@ export default function RadarChart(props) {
                 data={data}
                 options={{
                     elements: {
-                        labelOptions: {
-                            fontS
-                        }
                         line: {
                             borderWidth: 3
 
@@ -70,9 +67,6 @@ export default function RadarChart(props) {
                     },
                     scales: {
                         r: {
-                            ticks: {
-                                font
-                            },
                             angleLines: {
                                 display: true,
                                 color: '#DCDCDC',
