@@ -10,11 +10,7 @@ async function createRating(bodyObj) {
 
     })
         .then(res => res.json())
-        .then(data => {
-            if (data.ok) {
-                return data
-            }
-        })
+        .then(data => data)
         .catch((error) => {
             console.error('Error:', error);
             console.log("server is down!!")

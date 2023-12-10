@@ -4,12 +4,17 @@ import EditClientForm from './components/EditClientForm';
 import NewRatingForm from './components/NewRatingForm';
 import EditRatingForm from './components/EditRatingForm';
 import RatingList from './components/RatingsList';
+import Login from './components/Login';
+import { getIsLoggedIn } from './frontEndFuncs/miscFuncs';
+import UserDash from './components/UserDash';
 
 import './App.css';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+
+import { useState, useEffect } from 'react';
 
 const router = createBrowserRouter([
   {
@@ -37,11 +42,25 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  const [isloggedIn, setIsloggedIn] = useState(false);
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    getIsLoggedIn()
+      .then((res) => {
+        setIsloggedIn(res.loggedIn)
+        setUserName(res.username)
+      });
+  }, [])
+
   return (
-    <div className='mainBody'>
-      <RouterProvider router={router} />
-      {/* <p>hi</p> */}
-    </div>
+    isloggedIn ? (
+      <div className='mainBody'>
+        <UserDash userName={userName} />
+        <RouterProvider router={router} />
+      </div>) : (
+      <Login setIsloggedIn={setIsloggedIn} />
+    )
   );
 }
 

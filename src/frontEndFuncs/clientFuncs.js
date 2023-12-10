@@ -79,12 +79,13 @@ async function deleteClient(client_id) {
         .then(res => res.json())
         .then(data => {
             if (data.ok) {
-                return { message: 'success', }
+                return { message: 'success' }
+            } else {
+                return { message: 'failure' }
             }
         })
         .catch((error) => {
-            console.error('Error:', error);
-            console.log("server is down!!")
+            return { message: 'failure' }
         })
 }
 
