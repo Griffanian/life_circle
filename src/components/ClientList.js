@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getClientList, deleteClient } from "../frontEndFuncs/clientFuncs";
-import BlurredText from "./BlurredText";
+import { getInitials } from "../frontEndFuncs/miscFuncs";
 
 const ClientItem = ({ client, setServerResponded, setClients, setError }) => {
     const handleDelete = (event) => {
@@ -27,7 +27,7 @@ const ClientItem = ({ client, setServerResponded, setClients, setError }) => {
     return (
         <div className="clientDiv" key={client.client_id}>
             <div className="clientInfo">
-                <BlurredText text={client.client_name} />
+                <p>{getInitials(client.client_name)}</p>
                 <div>
                     <Link to={"/editClient/" + client.client_id}>
                         <button className="editButton" value={client.client_id}>Edit Client</button>

@@ -48,6 +48,7 @@ function App() {
   useEffect(() => {
     getIsLoggedIn()
       .then((res) => {
+        console.log(res.cookie)
         setIsloggedIn(res.loggedIn)
         setUserName(res.username)
       });

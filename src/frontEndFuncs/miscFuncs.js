@@ -69,6 +69,12 @@ async function login(username, password) {
         password
     }
 
+    return {
+        "ok": true,
+        "message": "connection established",
+        "username": "Admin"
+    }
+
     return fetch(loginUrl, {
         method: "POST",
         headers: {
@@ -79,11 +85,24 @@ async function login(username, password) {
 
     })
         .then(res => res.json())
-        .then(data => data)
+        .then(data => {
+
+        })
         .catch((error) => {
             console.error('Error:', error);
             console.log("server is down!!")
         })
 }
 
-export { getFormattedDate, getIsLoggedIn, login }
+function getInitials(name) {
+    const words = name.split(' ');
+
+    let initials = '';
+
+    for (let i = 0; i < words.length; i++) {
+        initials += words[i].charAt(0).toUpperCase() + '.';
+    }
+    return initials;
+}
+
+export { getFormattedDate, getIsLoggedIn, login, getInitials }

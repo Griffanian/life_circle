@@ -7,7 +7,7 @@ export default function UserDash({ userName }) {
 
     return (
         <div>
-            <p>logged in as {userName}</p>
+            <p>Logged in as {userName}</p>
             <button className="logoutButton" onClick={() => HandleClick()}>Logout</button>
         </div>
     )
