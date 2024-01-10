@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "knex": "^3.0.1",
+    "nodemon": "^3.0.2",
+    "path": "^0.12.7",
+    "pg": "^8.11.3"
+  },
+  "scripts": {
+    "start": "npm i && node server.js",
+    "build": "cd client && npm i && npm run build",
+    "dev": "nodemon server.js"
+  }
+}
