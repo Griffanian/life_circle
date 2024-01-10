@@ -46,7 +46,7 @@ function App() {
   const [userName, setUserName] = useState('');
 
   useEffect(() => {
-    console.log(process.env, process.env.REACT_APP_BACKEND_URL)
+    console.log(process.env)
     getIsLoggedIn()
       .then((res) => {
         if (res && res.loggedIn && res.username) {

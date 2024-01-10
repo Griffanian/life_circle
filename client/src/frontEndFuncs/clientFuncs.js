@@ -1,8 +1,8 @@
 function getClientURL(client_id) {
     if (client_id) {
-        return new URL(`api/client/${client_id}`, process.env.REACT_APP_BACKEND_URL)
+        return new URL(`api/client/${client_id}`, process.env.REACT_APP_BASE_URL)
     } else {
-        return new URL("api/clients/", process.env.REACT_APP_BACKEND_URL)
+        return new URL("api/clients/", process.env.REACT_APP_BASE_URL)
     }
 
 }

@@ -1,5 +1,5 @@
 async function createRating(bodyObj) {
-    const ratings_url = new URL('api/ratings/', process.env.REACT_APP_BACKEND_URL)
+    const ratings_url = new URL('api/ratings/', process.env.REACT_APP_BASE_URL)
     return fetch(ratings_url, {
         method: "POST",
         headers: {
@@ -18,7 +18,7 @@ async function createRating(bodyObj) {
 }
 
 async function getRating(rating_id) {
-    const rating_url = new URL('api/rating/' + rating_id, process.env.REACT_APP_BACKEND_URL)
+    const rating_url = new URL('api/rating/' + rating_id, process.env.REACT_APP_BASE_URL)
 
     return fetch(rating_url, {
         method: "GET",
@@ -41,7 +41,7 @@ async function getRating(rating_id) {
 }
 
 async function getRatinglist(client_id) {
-    const rating_url = new URL(`api/ratings/${client_id}`, process.env.REACT_APP_BACKEND_URL)
+    const rating_url = new URL(`api/ratings/${client_id}`, process.env.REACT_APP_BASE_URL)
     return fetch(rating_url, {
         method: "GET",
         headers: {
@@ -64,7 +64,7 @@ async function getRatinglist(client_id) {
 
 async function editRating(bodyObj) {
 
-    const ratings_url = new URL('api/ratings/', process.env.REACT_APP_BACKEND_URL)
+    const ratings_url = new URL('api/ratings/', process.env.REACT_APP_BASE_URL)
 
     return fetch(ratings_url, {
         method: "PUT",
@@ -88,7 +88,7 @@ async function editRating(bodyObj) {
 }
 
 async function deleteRating(rating_id) {
-    const rating_url = new URL(`api/rating/${rating_id}`, process.env.REACT_APP_BACKEND_URL)
+    const rating_url = new URL(`api/rating/${rating_id}`, process.env.REACT_APP_BASE_URL)
     return fetch(rating_url, {
         method: "DELETE",
         headers: {
