@@ -46,6 +46,7 @@ function App() {
   const [userName, setUserName] = useState('');
 
   useEffect(() => {
+    console.log(process.env)
     getIsLoggedIn()
       .then((res) => {
         if (res && res.loggedIn && res.username) {
