@@ -12,7 +12,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use(cors({
-    origin: [process.env.REACT_APP_BASE_URL, 'http://localhost:8080'],
+    origin: [process.env.REACT_APP_BASE_URL, 'http://localhost:8081'],
     credentials: true,
     exposedHeaders: ["Set-Cookie"],
 }))
@@ -59,6 +59,7 @@ const verifyToken = (req, res, next) => {
 
     if (!token) {
         return res.status(403).json({ message: 'Token not provided' });
+        next();
     }
 
     verify(token, secretKey, (err, decoded) => {

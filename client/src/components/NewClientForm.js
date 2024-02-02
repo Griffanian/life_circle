@@ -22,17 +22,19 @@ export default function NewClientForm() {
     }
 
     return (
-        <>
+        <div className='formStyles'>
+            <div className='formHeader'>
+                <div className='createClientHeader'>
+                    <a onClick={() => navigate(-1)}><i className="fa-solid fa-arrow-left-long"></i></a>
+                    <h1>Create Client</h1>
+                </div>
+            </div>
             <form onSubmit={(e) => handleSubmit(e)}>
-                <label>Name:
-                    <input onChange={(e) => setName(e.target.value)}></input>
-                </label>
+                <p>Name</p>
+                <input name="client name" value={name} placeholder='E.g. John Doe' onChange={(e) => setName(e.target.value)}></input>
                 <input type="submit" value="Submit" />
             </form>
-            <Link to={"/clients"}>
-                <button value="all clients">all clients</button>
-            </Link>
-        </>
+        </div>
     )
 }
 

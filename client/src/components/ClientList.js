@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getClientList, deleteClient } from "../frontEndFuncs/clientFuncs";
 import { getInitials } from "../frontEndFuncs/miscFuncs";
 
@@ -25,27 +25,27 @@ const ClientItem = ({ client, setServerResponded, setClients, setError }) => {
     };
 
     return (
-        <div className="clientDiv" key={client.client_id}>
-            <div className="clientInfo">
-                <p>{getInitials(client.client_name)}</p>
-                <div>
+        <tr className="clientDiv" key={client.client_id}>
+            <td>
+                <div className="clientData">
+                    {getInitials(client.client_name)}
                     <Link to={"/editClient/" + client.client_id}>
-                        <button className="editButton" value={client.client_id}>Edit Client</button>
+                        <i className="fa-solid fa-pen"></i>
                     </Link>
-                    <button className="deleteButton" onClick={handleDelete} value={client.client_id}>
-                        Delete Client
-                    </button>
+                    <Link onClick={handleDelete}>
+                        <i className="fa-solid fa-trash"></i>
+                    </Link>
                 </div>
-            </div>
-            <div className="clientActions">
-                <Link to={"/ratings/" + client.client_id}>
-                    <button className="ratingsButton">See Ratings</button>
-                </Link>
-                <Link to={"/addRating/" + client.client_id}>
-                    <button className="addRatingButton" value={client.client_id}>Add Rating</button>
-                </Link>
-            </div>
-        </div>
+            </td>
+            <td>
+                <div className="ratingData">
+                    <Link to={"/ratings/" + client.client_id}>Ratings</Link>
+                    {/* <Link to={"/addRating/" + client.client_id}>
+                        Add Rating
+                    </Link> */}
+                </div>
+            </td>
+        </tr >
     );
 };
 
@@ -53,6 +53,7 @@ const ClientList = () => {
     const [clients, setClients] = useState([]);
     const [serverResponded, setServerResponded] = useState(false);
     const [error, setError] = useState('');
+    const navigate = useNavigate()
 
     useEffect(() => {
         getClientList()
@@ -68,14 +69,28 @@ const ClientList = () => {
     return (
         serverResponded ? (
             <div className="clientListContainer">
-                {clients.map((client) => (
-                    <ClientItem key={client.client_id} client={client}
-                        setServerResponded={setServerResponded} setClients={setClients} setError={setError} />
-                ))}
+                <div className="clientListHeader">
+                    <a onClick={() => navigate(-1)}><i className="fa-solid fa-arrow-left-long"></i></a>
+                    <h1>Manage Clients</h1>
+                    <Link to={"/addClient"}>
+                        <button className="addClientButton" value="add client">
+                            <i className="fa-solid fa-circle-plus"></i>
+                            Add Client
+                        </button>
+
+                    </Link>
+                </div>
+                <div className="clientsTable">
+                    <table>
+                        <tbody>
+                            {clients.map((client) => (
+                                <ClientItem key={client.client_id} client={client}
+                                    setServerResponded={setServerResponded} setClients={setClients} setError={setError} />
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
                 {error ? (<p className="errorMessage">{error}</p>) : null}
-                <Link to={"/addClient"}>
-                    <button className="addClientButton" value="add client">Add Client</button>
-                </Link>
             </div>
         ) : (
             <div className="loader"></div>

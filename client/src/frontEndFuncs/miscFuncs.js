@@ -99,4 +99,17 @@ function getInitials(name) {
     return initials;
 }
 
-export { getFormattedDate, getIsLoggedIn, login, getInitials }
+const addAverage = (ratings, categories) => {
+    return ratings.map(rating => {
+        let sum = 0;
+        for (const [key, value] of Object.entries(rating)) {
+            if (categories.includes(key)) {
+                sum += value;
+            }
+        }
+        rating['average'] = sum / categories.length;
+        return rating;
+    });
+};
+
+export { getFormattedDate, getIsLoggedIn, login, getInitials, addAverage }

@@ -1,0 +1,394 @@
+$primary-color: #326aff;
+$lighter-primary-color: #5482ff;
+$secondary-color: rgb(220, 218, 218);
+
+a {
+  all: unset;
+}
+
+
+html,
+body,
+.app {
+  height: 100%;
+  margin: 0;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.generalHeader {
+  width: 100%;
+  height: 50px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: solid 1px $secondary-color;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.generalHeader img {
+  display: block;
+  height: 20px;
+  padding-right: 10px;
+}
+
+.fa-arrow-left-long {
+  font-size: 40px;
+}
+
+.companyName {
+  font-size: 18px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.formStyles {
+  margin: auto;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.formStyles p {
+  margin-bottom: 5px;
+}
+
+.formStyles input {
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: solid 1px rgb(161, 161, 161);
+  height: 1.5rem;
+  padding: 5px 7px;
+  font-size: 16px;
+}
+
+.formStyles input::placeholder {
+  color: $secondary-color;
+}
+
+.formStyles input:focus-visible {
+  border: solid 1px $primary-color;
+}
+
+.formHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formHeader>div:first-of-type {
+  width: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.createClientHeader {
+  width: 250px !important;
+}
+
+.formHeader .fa-trash {
+  color: red;
+  font-size: 30px;
+}
+
+.errorMessage {
+  color: white;
+  background-color: red;
+  padding: 10px;
+  margin-top: 0 !important;
+  border-radius: 6px;
+}
+
+
+.userHeader {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: max-content;
+}
+
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  z-index: 1;
+}
+
+.dropdown button {
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: 61px;
+  background-color: $primary-color;
+  color: white;
+  border-radius: 6px;
+}
+
+.dropdown button:hover {
+  background-color: $lighter-primary-color;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+
+canvas {
+  margin: auto;
+  width: min(100vh, 100vw) !important;
+  height: min(100vh, 100vw) !important;
+}
+
+
+.ratings {
+  display: flex;
+  align-items: center;
+}
+
+.ratings p {
+  border-right: solid 1px black;
+}
+
+.mainBody {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.loader {
+  margin: auto;
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid $primary-color;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+input[type="submit"] {
+
+  padding: 8px 16px;
+  font-size: 14px;
+  height: 35px;
+  border-radius: 6px;
+  border: none;
+  background-color: $primary-color;
+
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: $lighter-primary-color;
+}
+
+.clientListContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.clientListHeader,
+.ratingListHeader {
+  background-color: $primary-color;
+  margin: 0;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  justify-content: space-between;
+  color: white;
+}
+
+
+.clientListHeader h1,
+.ratingListHeader h1 {
+  margin: 0;
+  color: white;
+  font-weight: normal !important;
+  font-size: 20px;
+}
+
+.addClientButton,
+.ratingListHeader button {
+  height: 23px;
+  background-color: white;
+  border-radius: 6px;
+  border: none;
+  color: $primary-color;
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+}
+
+.ratingListHeader button {
+  height: 25px;
+  font-size: 23px;
+  display: flex;
+  justify-content: space-around;
+  padding: 16px 0;
+}
+
+.ratingListHeader>div {
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+
+.addRating {
+  font-size: 30px;
+}
+
+.clientsTable {
+  border-collapse: collapse;
+  margin-top: 10px;
+  padding: 0 20px;
+  width: calc(100% - 40px);
+}
+
+.clientsTable table {
+  width: 100%;
+}
+
+.clientsTable th,
+.clientsTable td {
+  text-align: left;
+}
+
+.clientsTable th {
+  background-color: #f2f2f2;
+}
+
+.clientData {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.clientData a {
+  margin-left: 5px;
+  color: #333;
+  text-decoration: none;
+}
+
+.clientData a:hover {
+  color: $lighter-primary-color;
+}
+
+.ratingData {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ratingData a {
+  padding: 5px 10px;
+  margin-right: 5px;
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.ratingData a:hover {
+  background-color: $lighter-primary-color;
+  /* Hover color */
+}
+
+.clientData .fa-pen,
+.actions .fa-pen {
+  color: #ffce2f;
+}
+
+.clientData .fa-trash,
+.actions .fa-trash {
+  color: red;
+}
+
+
+.logoutButton {
+  width: fit-content;
+}
+
+.ratingTable {
+  padding: 0 20px;
+}
+
+.ratingData,
+.ratingTable table {
+  width: 100%;
+}
+
+.catData {
+  display: none !important;
+}
+
+.ratingTable table {
+  border-collapse: collapse;
+}
+
+.ratingTable th:not(.actions),
+.ratingTable td:not(.actions) {
+  box-sizing: border-box;
+  border-bottom: 1px solid $secondary-color;
+  border-collapse: collapse;
+}
+
+
+.actions {
+  width: 40px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.noRatings {
+  width: 100%;
+}
+
+.noRatings>p {
+  margin: auto;
+  width: max-content;
+}

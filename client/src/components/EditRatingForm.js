@@ -87,7 +87,11 @@ const EditRatingForm = () => {
 
     return (
         serverResponded ? (
-            <div className='home'>
+            <div className='formStyles'>
+                <div className='formHeader'>
+                    <a onClick={() => navigate(-1)}><i className="fa-solid fa-arrow-left-long"></i></a>
+                    <h1>Edit Rating</h1>
+                </div>
                 <form onSubmit={handleSubmit}>
                     <p>Name: {formData.client_name}</p>
                     {categories.map((category) => (

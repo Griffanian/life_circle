@@ -70,9 +70,15 @@ export default function NewRatingForm() {
 
     return (
         serverResponded ? (
-            <div className='home'>
+            <div className='formStyles'>
+                <div className='formHeader'>
+                    <a onClick={() => navigate(-1)}><i className="fa-solid fa-arrow-left-long"></i></a>
+                    <h1>Create Rating</h1>
+                </div>
                 <form onSubmit={(e) => handleSubmit(e)}>
-                    <label>Name: {formData.client_name}</label>
+
+                    <p>Name</p>
+                    <a>{formData.client_name}</a>
                     {categories.map((category) => (
                         <label key={category}>{capitalize(category)}:
                             <select onChange={(e) => handleRatingsChange(category, e.target.value)} value={formData.ratings[category]}>
@@ -88,9 +94,6 @@ export default function NewRatingForm() {
                     <input type="submit" value="Submit" />
                 </form>
                 {error ? (<p>{error}</p>) : null}
-                <Link to={"/ratings/" + formData.client_id}>
-                    <button value="all ratings">All Ratings</button>
-                </Link>
             </div>
         ) : (
             <div className="loader"></div>

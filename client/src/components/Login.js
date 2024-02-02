@@ -11,7 +11,6 @@ export default function Login() {
         login(userName, password)
             .then((res) => {
                 if (res.ok) {
-                    console.log(res)
                     window.location.reload()
                 } else {
                     setError(res.message)
@@ -20,15 +19,18 @@ export default function Login() {
     };
 
     return (
-        <form onSubmit={(e) => handleSubmit(e)}>
-            <label>username:
-                <input value={userName} onChange={(e) => setUserName(e.target.value)}></input>
-            </label>
-            <label>password:
-                <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
-            </label>
-            <input type='submit'></input>
-            {error ? (<p>{error}</p>) : null}
-        </form>
+        <div className='formStyles'>
+            <h1>Login</h1>
+            {error ? (<p className='errorMessage'>{error}</p>) : null}
+            <form onSubmit={(e) => handleSubmit(e)}>
+                <label>Username</label>
+                <input value={userName} onChange={(e) => setUserName(e.target.value)} placeholder='E.g. John Doe'></input>
+
+                <label>Password</label>
+                <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Enter your password' />
+                <input type='submit'></input>
+
+            </form>
+        </div>
     )
 }

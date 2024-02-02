@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate, useHis } from 'react-router-dom';
 import { getClient, editClient, deleteClient } from '../frontEndFuncs/clientFuncs';
 
 export default function EditClientForm() {
@@ -22,19 +22,24 @@ export default function EditClientForm() {
 
     const handleDelete = (event) => {
         event.preventDefault();
-        setServerResponded(false);
-        deleteClient(client.client_id)
-            .then((res) => {
-                if (res.message === "success") {
-                    navigate('/clients')
-                } else {
-                    setError("Error deleting client");
-                    setServerResponded(true);
-                }
-            })
-            .catch((error) => {
-                setError("Error deleting client:", error);
-            })
+
+        const isConfirmed = window.confirm("Are you sure you want to delete this client?");
+
+        if (isConfirmed) {
+            setServerResponded(false);
+            deleteClient(client.client_id)
+                .then((res) => {
+                    if (res.message === "success") {
+                        navigate('/clients')
+                    } else {
+                        setError("Error deleting client");
+                        setServerResponded(true);
+                    }
+                })
+                .catch((error) => {
+                    setError("Error deleting client:", error);
+                })
+        }
     }
 
     const handleSubmit = (e) => {
@@ -54,20 +59,23 @@ export default function EditClientForm() {
 
     return (
         serverResponded ? (
-            <>
+            <div className='formStyles'>
+                <div className='formHeader'>
+                    <div>
+                        <a onClick={() => navigate(-1)}><i className="fa-solid fa-arrow-left-long"></i></a>
+                        <h1>Edit Client</h1>
+                    </div>
+                    <a onClick={handleDelete} value={client.client_id}>
+                        <i className="fa-solid fa-trash"></i>
+                    </a>
+                </div>
                 <form onSubmit={(e) => handleSubmit(e)}>
-                    <label>Name:
-                        <input value={newName} onChange={(e) => setNewName(e.target.value)}></input>
-                    </label>
+                    <p>Name</p>
+                    <input name='Client Name' value={newName} onChange={(e) => setNewName(e.target.value)}></input>
                     <input type="submit" value="Submit" />
                 </form>
-                <button onClick={handleDelete} value={client.client_id}>
-                    delete client
-                </button>
-                <Link to={"/clients"}>
-                    <button value="all clients">all clients</button>
-                </Link>
-            </>
+
+            </div>
         ) : (
             <div className="loader"></div>
         )
