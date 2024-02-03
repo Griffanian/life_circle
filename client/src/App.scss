@@ -1,6 +1,9 @@
 $primary-color: #326aff;
 $lighter-primary-color: #5482ff;
 $secondary-color: rgb(220, 218, 218);
+$background-color: white;
+$opposite-background-color: black;
+$padding-size: 20px;
 
 a {
   all: unset;
@@ -15,6 +18,7 @@ body,
 }
 
 #root {
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -29,10 +33,10 @@ body,
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
-  border-bottom: solid 1px $secondary-color;
-  padding: 0 20px;
+  padding: 0 $padding-size;
   box-sizing: border-box;
+  background-color: $background-color;
+  color: $opposite-background-color;
 }
 
 .logo {
@@ -59,7 +63,6 @@ body,
 .formStyles {
   margin: auto;
   width: 300px;
-  display: flex;
   flex-direction: column;
   justify-content: space-around;
   padding: 20px;
@@ -109,8 +112,12 @@ body,
   font-size: 30px;
 }
 
+.sliderLabels {
+  margin-bottom: 8px;
+}
+
 .errorMessage {
-  color: white;
+  color: $background-color;
   background-color: red;
   padding: 10px;
   margin-top: 0 !important;
@@ -121,32 +128,21 @@ body,
 .userHeader {
   cursor: pointer;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   position: relative;
   width: max-content;
+  align-items: center;
 }
 
-.dropdown {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 100%;
-  z-index: 1;
-}
-
-.dropdown button {
-  padding: 10px;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  width: 61px;
-  background-color: $primary-color;
+.userHeader button {
+  padding: 5px 10px;
+  margin-right: 5px;
+  background-color: #326aff;
   color: white;
+  border: none;
   border-radius: 6px;
-}
-
-.dropdown button:hover {
-  background-color: $lighter-primary-color;
+  cursor: pointer;
+  margin-left: 10px;
 }
 
 
@@ -176,7 +172,9 @@ canvas {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  // height: 100%;
+  background-color: $background-color;
+  color: $opposite-background-color;
 }
 
 .loader {
@@ -208,7 +206,7 @@ input[type="submit"] {
   border: none;
   background-color: $primary-color;
 
-  color: white;
+  color: $background-color;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
@@ -228,28 +226,27 @@ input[type="submit"]:hover {
 .clientListHeader,
 .ratingListHeader {
   background-color: $primary-color;
-  margin: 0;
-  height: 50px;
+  height: 56px;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 $padding-size;
   justify-content: space-between;
-  color: white;
+  color: $background-color;
 }
 
 
 .clientListHeader h1,
 .ratingListHeader h1 {
   margin: 0;
-  color: white;
+  color: $background-color;
   font-weight: normal !important;
   font-size: 20px;
 }
 
 .addClientButton,
 .ratingListHeader button {
-  height: 23px;
-  background-color: white;
+  height: 30px;
+  background-color: $background-color;
   border-radius: 6px;
   border: none;
   color: $primary-color;
@@ -273,22 +270,22 @@ input[type="submit"]:hover {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: white;
+  color: $background-color;
 }
 
-.addRating {
+.ratingIcons {
   font-size: 30px;
 }
 
 .clientsTable {
   border-collapse: collapse;
   margin-top: 10px;
-  padding: 0 20px;
-  width: calc(100% - 40px);
+  padding: 0 $padding-size;
 }
 
+.clientsTable,
 .clientsTable table {
-  width: 100%;
+  width: calc(100% - 40px);
 }
 
 .clientsTable th,
@@ -306,7 +303,7 @@ input[type="submit"]:hover {
   justify-content: space-evenly;
 }
 
-.clientData a {
+.clientIcons>a {
   margin-left: 5px;
   color: #333;
   text-decoration: none;
@@ -314,6 +311,10 @@ input[type="submit"]:hover {
 
 .clientData a:hover {
   color: $lighter-primary-color;
+}
+
+.clientData p {
+  margin: 0;
 }
 
 .ratingData {
@@ -326,7 +327,7 @@ input[type="submit"]:hover {
   padding: 5px 10px;
   margin-right: 5px;
   background-color: $primary-color;
-  color: white;
+  color: $background-color;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -354,13 +355,18 @@ input[type="submit"]:hover {
 }
 
 .ratingTable {
-  padding: 0 20px;
+  padding: 0 $padding-size;
 }
 
 .ratingData,
 .ratingTable table {
   width: 100%;
 }
+
+.ratingTable td {
+  text-align: center;
+}
+
 
 .catData {
   display: none !important;
@@ -380,8 +386,11 @@ input[type="submit"]:hover {
 
 .actions {
   width: 40px;
+  height: 100%;
   display: flex;
   justify-content: space-evenly;
+  gap: 10px;
+  align-items: center;
 }
 
 .noRatings {
@@ -391,4 +400,152 @@ input[type="submit"]:hover {
 .noRatings>p {
   margin: auto;
   width: max-content;
+}
+
+.chart-container {
+  position: relative;
+  width: 100%;
+}
+
+.ratingTable {
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.ratingTable table {
+  width: 300px;
+}
+
+@media screen and (min-width: 767px) {
+  .mainBody {
+    width: 100%;
+  }
+
+  .generalHeader {
+    margin: 10px 0;
+  }
+
+  .generalHeader img {
+    height: 40px;
+  }
+
+  .companyName {
+    font-size: 35px;
+  }
+
+  .clientListHeader,
+  .ratingListHeader {
+    height: 75px;
+  }
+
+  .clientListHeader h1,
+  .ratingListHeader h1 {
+    font-size: 30px;
+  }
+
+  .addClientButton,
+  .ratingListHeader button {
+    height: 35px;
+    font-size: 20px;
+    width: 90px;
+  }
+
+  .clientData {
+    width: 100px;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .ratingData a {
+    height: 25px;
+  }
+
+  .clientData p {
+    font-size: larger;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  $padding-size: 50px;
+
+
+  .generalHeader,
+  .clientListHeader,
+  .clientsTable,
+  .ratingListHeader,
+  .ratingTable {
+    padding: 0 $padding-size;
+  }
+
+  .clientsTable,
+  .clientsTable table {
+    width: calc(100% - 45px);
+  }
+
+  .clientData {
+    width: 150px;
+  }
+
+  .clientIcons {
+    font-size: 30px;
+  }
+
+  .clientIcons a {
+    margin-left: 10px;
+  }
+
+  .clientData p {
+    font-size: 30px;
+  }
+
+
+  .ratingData a {
+    height: 48px;
+    font-size: 30px;
+  }
+
+  .catData {
+    display: table-cell !important;
+  }
+
+  .clientListHeader h1,
+  .ratingListHeader h1 {
+    font-size: 40px;
+  }
+
+  .ratingIcons {
+    font-size: 40px;
+  }
+
+
+
+  .addClientButton,
+  .ratingListHeader button {
+    height: 48px;
+    font-size: 30px;
+    width: 110px;
+  }
+
+  .addClientButton {
+    width: 185px;
+  }
+
+  .userHeader {
+    font-size: 30px;
+  }
+
+  .userHeader button {
+    font-size: 30px;
+    width: 112px;
+  }
+
+  input[type=submit] {
+    font-size: 30px;
+    height: 45px;
+  }
+
+  .actions {
+    height: 79px;
+  }
 }

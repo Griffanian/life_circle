@@ -53,7 +53,7 @@ const verifyToken = (req, res, next) => {
         const parts = trimmedCookie.split('=');
         if (parts.length === 2 && parts[0] === 'access-token') {
             token = parts[1];
-            break; // Found access-token, exit loop
+            break;
         }
     }
 

@@ -3,6 +3,9 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { getClient } from '../frontEndFuncs/clientFuncs';
 import { createRating } from '../frontEndFuncs/ratingFuncs';
 import { capitalize } from 'lodash';
+import { getInitials } from '../frontEndFuncs/miscFuncs';
+import { Slider, RangeSlider } from 'rsuite';
+import 'rsuite/dist/rsuite-no-reset.min.css';
 
 export default function NewRatingForm() {
     const navigate = useNavigate();
@@ -77,17 +80,18 @@ export default function NewRatingForm() {
                 </div>
                 <form onSubmit={(e) => handleSubmit(e)}>
 
-                    <p>Name</p>
-                    <a>{formData.client_name}</a>
+                    <p>Name {getInitials(formData.client_name)} </p>
                     {categories.map((category) => (
-                        <label key={category}>{capitalize(category)}:
-                            <select onChange={(e) => handleRatingsChange(category, e.target.value)} value={formData.ratings[category]}>
-                                {[...Array(10).keys()].map((num) => (
-                                    <option key={num + 1} value={num + 1}>
-                                        {num + 1}
-                                    </option>
-                                ))}
-                            </select>
+                        <label className='sliderLabels' key={category}>{capitalize(category)}
+                            <Slider
+                                defaultValue={1}
+                                min={1}
+                                step={1}
+                                max={10}
+                                onChange={(value) => handleRatingsChange(category, value)}
+                                graduated progress
+                                color="#326aff"
+                            />
                         </label>
                     ))}
                     <input type="date" onChange={(e) => setFormData({ ...formData, date: new Date(e.target.value).toISOString().split('T')[0] })} defaultValue={currentDate} />

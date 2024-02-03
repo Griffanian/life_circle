@@ -10,6 +10,7 @@
     "react-scripts": "^5.0.1",
     "react-simple-star-rating": "^5.1.7",
     "react-star-ratings": "^2.3.0",
+    "rsuite": "https://pkg.csb.dev/rsuite/rsuite/commit/55a0a85b/rsuite",
     "sass": "^1.70.0",
     "serve": "^14.2.1",
     "web-vitals": "^3.5.0"

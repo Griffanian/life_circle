@@ -28,13 +28,15 @@ const ClientItem = ({ client, setServerResponded, setClients, setError }) => {
         <tr className="clientDiv" key={client.client_id}>
             <td>
                 <div className="clientData">
-                    {getInitials(client.client_name)}
-                    <Link to={"/editClient/" + client.client_id}>
-                        <i className="fa-solid fa-pen"></i>
-                    </Link>
-                    <Link onClick={handleDelete}>
-                        <i className="fa-solid fa-trash"></i>
-                    </Link>
+                    <p>{getInitials(client.client_name)}</p>
+                    <div className="clientIcons">
+                        <Link to={"/editClient/" + client.client_id}>
+                            <i className="fa-solid fa-pen"></i>
+                        </Link>
+                        <Link onClick={handleDelete}>
+                            <i className="fa-solid fa-trash"></i>
+                        </Link>
+                    </div>
                 </div>
             </td>
             <td>
@@ -70,7 +72,7 @@ const ClientList = () => {
         serverResponded ? (
             <div className="clientListContainer">
                 <div className="clientListHeader">
-                    <a onClick={() => navigate(-1)}><i className="fa-solid fa-arrow-left-long"></i></a>
+                    {/* <a onClick={() => navigate(-1)}><i className="fa-solid fa-arrow-left-long"></i></a> */}
                     <h1>Manage Clients</h1>
                     <Link to={"/addClient"}>
                         <button className="addClientButton" value="add client">

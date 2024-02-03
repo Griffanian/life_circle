@@ -5,6 +5,7 @@ import { getRatinglist, deleteRating } from "../frontEndFuncs/ratingFuncs";
 import RadarChart from './RadarChart';
 import { getClient } from "../frontEndFuncs/clientFuncs";
 import RatingTable from "./RatingTable";
+import RatingListHeader from "./RatingListHeader";
 
 export default function RatingList() {
 
@@ -37,56 +38,55 @@ export default function RatingList() {
 
 
 
-    const handleDelete = (e) => {
+    const handleDelete = (e, rating_id) => {
         e.preventDefault()
         setServerResponded(false)
-        deleteRating(e.target.value)
+        deleteRating(rating_id)
             .then(data => {
                 if (data.ok) {
                     setRatings(ratings.filter((rating) => rating.rating_id != e.target.value))
                     setServerResponded(true)
+                    window.location.reload()
                 }
             })
     }
+    function handleDownloadImage(e) {
+        e.preventDefault();
+
+        const chartCanvases = document.getElementsByTagName('canvas');
+
+        if (chartCanvases.length > 0) {
+            const chartCanvas = chartCanvases[0];
+            const downloadLink = document.createElement('a');
+            downloadLink.href = chartCanvas.toDataURL();
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = mm + '/' + dd + '/' + yyyy;
+            downloadLink.download = "Col_" + getInitials(clientName) + '_' + today;
+            downloadLink.click();
+        }
+    };
+
     return (
         <>
-            <div className="ratingListHeader">
-                <div>
-                    <a onClick={() => navigate(-1)}><i className="fa-solid fa-arrow-left-long"></i></a>
-                    <h1>Client Ratings</h1>
-                    <Link to={"/addRating/" + client_id_param}>
-                        <div className="addRating">
-                            <i className="fa-solid fa-circle-plus"></i>
-                        </div>
-                    </Link>
-                </div>
-                {
-                    clientName ? (
-                        <Link to={"/editClient/" + client_id_param}>
-                            <button>
-                                {getInitials(clientName)}
-                                <i className="fa-solid fa-pen"></i>
-                            </button>
-                        </Link>
-                    ) : (<></>)
-                }
-            </div>
-            {
-                serverResponded ? (
+            <RatingListHeader navigate={navigate} clientName={clientName} client_id_param={client_id_param} handleDownloadImage={handleDownloadImage} />
+            {serverResponded ? (
+                ratings.length > 0 ? (
                     <>
-                        {
-                            ratings.length > 0 ? (
-                                <RatingTable categories={categories} ratings={ratings} />
-                            ) : (
-                                <div className="noRatings">
-                                    <p>This client has no ratings yet.</p>
-                                </div >
-
-                            )
-                        }
-                        {ratings.length > 0 ? <RadarChart ratings={ratings} /> : ""}
+                        <RadarChart ratings={ratings} />
+                        <RatingTable categories={categories} ratings={ratings} handleDelete={handleDelete} />
                     </>
-                ) : (<div className="loader"></div>)
-            }
-        </>)
+                ) : (
+                    <div className="noRatings">
+                        <p>This client has no ratings yet.</p>
+                    </div>
+                )
+            ) : (
+                <div className="loader"></div>
+            )}
+        </>
+    );
 }

@@ -28,6 +28,7 @@ export default function RadarChart(props) {
 
     const datasets = props.ratings.map((rating, index) => {
         const color = lineColors[index % 7]
+
         return (
             {
                 label: getFormattedDate(rating.rating_date),
@@ -48,19 +49,33 @@ export default function RadarChart(props) {
         labels: categories,
         datasets: datasets
     }
+
+    const circleDiameter = window.innerWidth > 375 ? 10 : 10
+    var pointSize = 6
+    var fontSize = 10
+
+    if (window.innerWidth >= 765) {
+        pointSize = 12;
+        fontSize = 20
+    } else if (window.innerWidth >= 570) {
+        pointSize = 8;
+        fontSize = 15
+    }
+
     return (
         <div className='chart-container'>
             <Radar
                 data={data}
                 options={{
+                    responsive: true,
+                    maintainAspectRatio: false,
                     elements: {
                         line: {
                             borderWidth: 3
-
                         },
                         point: {
-                            pointRadius: 5,
-                            hoverRadius: 10,
+                            pointRadius: pointSize,
+                            hoverRadius: 1.1 * pointSize,
                         }
                     },
                     scales: {
@@ -73,11 +88,30 @@ export default function RadarChart(props) {
                             grid: {
                                 display: true,
                                 circular: true,
-                                color: (context) => context.index === 10 ? 'black' : 'white'
+                                color: (context) => context.index === circleDiameter ? 'black' : 'white'
                             },
                             suggestedMin: 0,
-                            suggestedMax: 10
+                            suggestedMax: 10,
+                            ticks: {
+                                font: {
+                                    size: fontSize,
+                                }
+                            },
+                            pointLabels: {
+                                font: {
+                                    size: fontSize,
+                                }
+                            },
                         },
+                    },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: {
+                                    size: fontSize
+                                }
+                            }
+                        }
                     }
                 }}
             />

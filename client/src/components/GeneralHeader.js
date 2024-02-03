@@ -9,7 +9,7 @@ export default function GeneralHeader({ userName, isLoggedIn }) {
                 <div className='logo'>
 
                     <img src={circleLogo} alt="circle logo" />
-                    <p className='companyName'>C.O.L.</p>
+                    <p className='companyName'>The Circle of Life</p>
                 </div>
             </Link>
             {

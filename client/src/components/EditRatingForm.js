@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { capitalize } from 'lodash';
 import { getRating, editRating, deleteRating } from '../frontEndFuncs/ratingFuncs';
-import { getFormattedDate } from '../frontEndFuncs/miscFuncs';
+import { getFormattedDate, getInitials } from '../frontEndFuncs/miscFuncs';
+import { Slider } from 'rsuite';
 
 const EditRatingForm = () => {
     const navigate = useNavigate();
@@ -74,15 +75,20 @@ const EditRatingForm = () => {
             });
     };
 
-    const handleDelete = (e) => {
+    const handleDelete = (e, rating_id) => {
         e.preventDefault()
-        setServerResponded(false)
-        deleteRating(e.target.value)
-            .then(data => {
-                if (data.ok) {
-                    navigate(`/ratings/${formData.client_id}`);
-                }
-            })
+
+        const isConfirmed = window.confirm("Are you sure you want to delete this client?");
+
+        if (isConfirmed) {
+            setServerResponded(false)
+            deleteRating(rating_id)
+                .then(data => {
+                    if (data.ok) {
+                        navigate(`/ratings/${formData.client_id}`);
+                    }
+                })
+        }
     }
 
     return (
@@ -91,27 +97,28 @@ const EditRatingForm = () => {
                 <div className='formHeader'>
                     <a onClick={() => navigate(-1)}><i className="fa-solid fa-arrow-left-long"></i></a>
                     <h1>Edit Rating</h1>
+                    <a onClick={(e) => handleDelete(e, rating_id_param)}>
+                        <i className="fa-solid fa-trash"></i>
+                    </a>
                 </div>
-                <form onSubmit={handleSubmit}>
-                    <p>Name: {formData.client_name}</p>
+                <form onSubmit={(e) => handleSubmit(e)}>
+
+                    <p>Name {getInitials(formData.client_name)} </p>
                     {categories.map((category) => (
-                        <label key={category}>
-                            {capitalize(category)}:
-                            <select
-                                value={formData.ratings[category] ? formData.ratings[category] : ''}
-                                onChange={(e) => handleRatingsChange(category, e.target.value)}
-                            >
-                                {Array.from({ length: 10 }, (_, index) => (
-                                    <option key={index + 1} value={index + 1}>
-                                        {index + 1}
-                                    </option>
-                                ))}
-                            </select>
+                        <label className='sliderLabels' key={category}>{capitalize(category)}
+                            <Slider
+                                defaultValue={formData.ratings[category] ? formData.ratings[category] : ''}
+                                min={1}
+                                step={1}
+                                max={10}
+                                onChange={(value) => handleRatingsChange(category, value)}
+                                graduated progress
+                                color="#326aff"
+                            />
                         </label>
                     ))}
                     <p>{getFormattedDate(formData.date)}</p>
-                    <input type='submit' value='Submit' />
-                    <button onClick={(e) => handleDelete(e)} value={rating_id_param}>delete rating</button>
+                    <input type="submit" value="Submit" />
                 </form>
             </div>
         ) : (<div className="loader"></div>)
