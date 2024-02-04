@@ -59,22 +59,23 @@ export default function EditClientForm() {
 
     return (
         serverResponded ? (
-            <div className='formStyles'>
-                <div className='formHeader'>
-                    <div>
-                        <a onClick={() => navigate(-1)}><i className="fa-solid fa-arrow-left-long"></i></a>
-                        <h1>Edit Client</h1>
+            <div className='mainBody'>
+                <div className='formStyles'>
+                    <div className='formHeader'>
+                        <div>
+                            <a onClick={() => navigate(-1)}><i className="fa-solid fa-arrow-left-long"></i></a>
+                            <h1>Edit Client</h1>
+                        </div>
+                        <a onClick={handleDelete} value={client.client_id}>
+                            <i className="fa-solid fa-trash"></i>
+                        </a>
                     </div>
-                    <a onClick={handleDelete} value={client.client_id}>
-                        <i className="fa-solid fa-trash"></i>
-                    </a>
+                    <form onSubmit={(e) => handleSubmit(e)}>
+                        <p>Name</p>
+                        <input name='Client Name' value={newName} onChange={(e) => setNewName(e.target.value)}></input>
+                        <input type="submit" value="Submit" />
+                    </form>
                 </div>
-                <form onSubmit={(e) => handleSubmit(e)}>
-                    <p>Name</p>
-                    <input name='Client Name' value={newName} onChange={(e) => setNewName(e.target.value)}></input>
-                    <input type="submit" value="Submit" />
-                </form>
-
             </div>
         ) : (
             <div className="loader"></div>

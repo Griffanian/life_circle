@@ -73,31 +73,33 @@ export default function NewRatingForm() {
 
     return (
         serverResponded ? (
-            <div className='formStyles'>
-                <div className='formHeader'>
-                    <a onClick={() => navigate(-1)}><i className="fa-solid fa-arrow-left-long"></i></a>
-                    <h1>Create Rating</h1>
-                </div>
-                <form onSubmit={(e) => handleSubmit(e)}>
+            <div className='mainBody'>
+                <div className='formStyles'>
+                    <div className='formHeader'>
+                        <a onClick={() => navigate(-1)}><i className="fa-solid fa-arrow-left-long"></i></a>
+                        <h1>Create Rating</h1>
+                    </div>
+                    <form onSubmit={(e) => handleSubmit(e)}>
 
-                    <p>Name {getInitials(formData.client_name)} </p>
-                    {categories.map((category) => (
-                        <label className='sliderLabels' key={category}>{capitalize(category)}
-                            <Slider
-                                defaultValue={1}
-                                min={1}
-                                step={1}
-                                max={10}
-                                onChange={(value) => handleRatingsChange(category, value)}
-                                graduated progress
-                                color="#326aff"
-                            />
-                        </label>
-                    ))}
-                    <input type="date" onChange={(e) => setFormData({ ...formData, date: new Date(e.target.value).toISOString().split('T')[0] })} defaultValue={currentDate} />
-                    <input type="submit" value="Submit" />
-                </form>
-                {error ? (<p>{error}</p>) : null}
+                        <p>Name {getInitials(formData.client_name)} </p>
+                        {categories.map((category) => (
+                            <label className='sliderLabels' key={category}>{capitalize(category)}
+                                <Slider
+                                    defaultValue={1}
+                                    min={1}
+                                    step={1}
+                                    max={10}
+                                    onChange={(value) => handleRatingsChange(category, value)}
+                                    graduated progress
+                                    color="#326aff"
+                                />
+                            </label>
+                        ))}
+                        <input type="date" onChange={(e) => setFormData({ ...formData, date: new Date(e.target.value).toISOString().split('T')[0] })} defaultValue={currentDate} />
+                        <input type="submit" value="Submit" />
+                    </form>
+                    {error ? (<p>{error}</p>) : null}
+                </div>
             </div>
         ) : (
             <div className="loader"></div>

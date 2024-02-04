@@ -93,33 +93,35 @@ const EditRatingForm = () => {
 
     return (
         serverResponded ? (
-            <div className='formStyles'>
-                <div className='formHeader'>
-                    <a onClick={() => navigate(-1)}><i className="fa-solid fa-arrow-left-long"></i></a>
-                    <h1>Edit Rating</h1>
-                    <a onClick={(e) => handleDelete(e, rating_id_param)}>
-                        <i className="fa-solid fa-trash"></i>
-                    </a>
-                </div>
-                <form onSubmit={(e) => handleSubmit(e)}>
+            <div className='mainBody'>
+                <div className='formStyles'>
+                    <div className='formHeader'>
+                        <a onClick={() => navigate(-1)}><i className="fa-solid fa-arrow-left-long"></i></a>
+                        <h1>Edit Rating</h1>
+                        <a onClick={(e) => handleDelete(e, rating_id_param)}>
+                            <i className="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                    <form onSubmit={(e) => handleSubmit(e)}>
 
-                    <p>Name {getInitials(formData.client_name)} </p>
-                    {categories.map((category) => (
-                        <label className='sliderLabels' key={category}>{capitalize(category)}
-                            <Slider
-                                defaultValue={formData.ratings[category] ? formData.ratings[category] : ''}
-                                min={1}
-                                step={1}
-                                max={10}
-                                onChange={(value) => handleRatingsChange(category, value)}
-                                graduated progress
-                                color="#326aff"
-                            />
-                        </label>
-                    ))}
-                    <p>{getFormattedDate(formData.date)}</p>
-                    <input type="submit" value="Submit" />
-                </form>
+                        <p>Name {getInitials(formData.client_name)} </p>
+                        {categories.map((category) => (
+                            <label className='sliderLabels' key={category}>{capitalize(category)}
+                                <Slider
+                                    defaultValue={formData.ratings[category] ? formData.ratings[category] : ''}
+                                    min={1}
+                                    step={1}
+                                    max={10}
+                                    onChange={(value) => handleRatingsChange(category, value)}
+                                    graduated progress
+                                    color="#326aff"
+                                />
+                            </label>
+                        ))}
+                        <p>{getFormattedDate(formData.date)}</p>
+                        <input type="submit" value="Submit" />
+                    </form>
+                </div>
             </div>
         ) : (<div className="loader"></div>)
     )

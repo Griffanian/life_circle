@@ -1,17 +1,15 @@
 import React from 'react';
 import GeneralHeader from './GeneralHeader';
-import Login from './Login';
 import { Outlet } from 'react-router-dom';
-
+import Login from './Login';
 export default function Layout({ isLoggedIn, setIsLoggedIn, userName }) {
     return (
         <>
             <GeneralHeader isLoggedIn={isLoggedIn} userName={userName} />
             {
                 isLoggedIn ? (
-                    <div className='mainBody'>
-                        <Outlet />
-                    </div>) : (
+                    <Outlet />
+                ) : (
                     <Login setIsLoggedIn={setIsLoggedIn} />
                 )
             }

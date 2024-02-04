@@ -23,6 +23,8 @@ body,
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .generalHeader {
@@ -58,6 +60,7 @@ body,
   font-size: 18px;
   margin: 0;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .formStyles {
@@ -136,7 +139,6 @@ body,
 
 .userHeader button {
   padding: 5px 10px;
-  margin-right: 5px;
   background-color: #326aff;
   color: white;
   border: none;
@@ -156,6 +158,7 @@ canvas {
   margin: auto;
   width: min(100vh, 100vw) !important;
   height: min(100vh, 100vw) !important;
+  background-color: $background-color;
 }
 
 
@@ -250,11 +253,11 @@ input[type="submit"]:hover {
   border-radius: 6px;
   border: none;
   color: $primary-color;
-  width: 100px;
+  width: 110px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .ratingListHeader button {
@@ -286,7 +289,7 @@ input[type="submit"]:hover {
 
 .clientsTable,
 .clientsTable table {
-  width: calc(100% - 40px);
+  width: calc(100% - 17px);
 }
 
 .clientsTable th,
@@ -322,6 +325,7 @@ input[type="submit"]:hover {
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  font-size: 15px;
 }
 
 .ratingData a {
@@ -342,7 +346,7 @@ input[type="submit"]:hover {
 
 .clientData .fa-pen,
 .actions .fa-pen {
-  color: #ffce2f;
+  color: $primary-color;
 }
 
 .clientData .fa-trash,
@@ -357,10 +361,10 @@ input[type="submit"]:hover {
 
 .ratingTable {
   padding: 0 $padding-size;
+  margin-bottom: 50px;
 }
 
-.ratingData,
-.ratingTable table {
+.ratingData {
   width: 100%;
 }
 
@@ -375,6 +379,7 @@ input[type="submit"]:hover {
 
 .ratingTable table {
   border-collapse: collapse;
+  width: 300px;
 }
 
 .ratingTable th:not(.actions),
@@ -414,10 +419,6 @@ input[type="submit"]:hover {
   font-size: 20px;
 }
 
-.ratingTable table {
-  width: 300px;
-}
-
 @media screen and (min-width: 767px) {
   .mainBody {
     width: 100%;
@@ -431,31 +432,41 @@ input[type="submit"]:hover {
     height: 40px;
   }
 
-  .companyName {
-    font-size: 35px;
-  }
-
   .clientListHeader,
   .ratingListHeader {
     height: 75px;
   }
 
   .clientListHeader h1,
-  .ratingListHeader h1 {
-    font-size: 30px;
+  .ratingListHeader h1,
+  .companyName {
+    font-size: 35px;
   }
 
   .addClientButton,
   .ratingListHeader button {
-    height: 35px;
-    font-size: 20px;
     width: 130px;
   }
 
+  .addClientButton,
+  .ratingListHeader button,
+  .userHeader button {
+    height: 40px;
+  }
+
   .clientData {
-    width: 100px;
+    width: 120px;
     justify-content: space-between;
     gap: 10px;
+  }
+
+  .ratingData,
+  .userHeader,
+  .userHeader button,
+  .addClientButton,
+  .ratingListHeader button,
+  .clientData {
+    font-size: 20px;
   }
 
   .ratingData a {
@@ -464,6 +475,15 @@ input[type="submit"]:hover {
 
   .clientData p {
     font-size: larger;
+  }
+
+  .clientsTable,
+  .clientsTable table {
+    width: calc(100% - 16px);
+  }
+
+  .ratingListHeader button {
+    width: 81px;
   }
 }
 
@@ -530,6 +550,7 @@ input[type="submit"]:hover {
 
   .addClientButton {
     width: 185px;
+    height: 58px;
   }
 
   .userHeader {
@@ -539,6 +560,7 @@ input[type="submit"]:hover {
   .userHeader button {
     font-size: 30px;
     width: 112px;
+    height: 46px;
   }
 
   input[type=submit] {
@@ -548,5 +570,9 @@ input[type="submit"]:hover {
 
   .actions {
     height: 79px;
+  }
+
+  .ratingTable table {
+    width: calc(100% - 20px);
   }
 }

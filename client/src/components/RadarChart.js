@@ -21,6 +21,18 @@ export default function RadarChart(props) {
         [56, 118, 29]
     ]
 
+    const plugin = {
+        id: 'customCanvasBackgroundColor',
+        beforeDraw: (chart, args, options) => {
+            const { ctx } = chart;
+            ctx.save();
+            ctx.globalCompositeOperation = 'destination-over';
+            ctx.fillStyle = options.color || '#99ffff';
+            ctx.fillRect(0, 0, chart.width, chart.height);
+            ctx.restore();
+        }
+    };
+
     function getPointColorStr(val) {
         const pointColor = pointColors[Math.ceil(val / 3) - 1]
         return `rgb(${pointColor[0]},${pointColor[1]},${pointColor[2]})`
@@ -50,12 +62,12 @@ export default function RadarChart(props) {
         datasets: datasets
     }
 
-    const circleDiameter = window.innerWidth > 375 ? 10 : 10
+    const circleDiameter = 10
     var pointSize = 6
     var fontSize = 10
 
     if (window.innerWidth >= 765) {
-        pointSize = 12;
+        pointSize = 11;
         fontSize = 20
     } else if (window.innerWidth >= 570) {
         pointSize = 8;
@@ -111,9 +123,16 @@ export default function RadarChart(props) {
                                     size: fontSize
                                 }
                             }
+                        },
+                        customCanvasBackgroundColor: {
+                            color: 'white',
                         }
                     }
-                }}
+
+                }
+
+                }
+                plugins={[plugin]}
             />
         </div>
     );

@@ -33,18 +33,15 @@ const ClientItem = ({ client, setServerResponded, setClients, setError }) => {
                         <Link to={"/editClient/" + client.client_id}>
                             <i className="fa-solid fa-pen"></i>
                         </Link>
-                        <Link onClick={handleDelete}>
+                        {/* <Link onClick={handleDelete}>
                             <i className="fa-solid fa-trash"></i>
-                        </Link>
+                        </Link> */}
                     </div>
                 </div>
             </td>
             <td>
                 <div className="ratingData">
                     <Link to={"/ratings/" + client.client_id}>Ratings</Link>
-                    {/* <Link to={"/addRating/" + client.client_id}>
-                        Add Rating
-                    </Link> */}
                 </div>
             </td>
         </tr >
@@ -55,7 +52,6 @@ const ClientList = () => {
     const [clients, setClients] = useState([]);
     const [serverResponded, setServerResponded] = useState(false);
     const [error, setError] = useState('');
-    const navigate = useNavigate()
 
     useEffect(() => {
         getClientList()
@@ -70,29 +66,30 @@ const ClientList = () => {
 
     return (
         serverResponded ? (
-            <div className="clientListContainer">
-                <div className="clientListHeader">
-                    {/* <a onClick={() => navigate(-1)}><i className="fa-solid fa-arrow-left-long"></i></a> */}
-                    <h1>Manage Clients</h1>
-                    <Link to={"/addClient"}>
-                        <button className="addClientButton" value="add client">
-                            <i className="fa-solid fa-circle-plus"></i>
-                            Add Client
-                        </button>
+            <div className='mainBody'>
+                <div className="clientListContainer">
+                    <div className="clientListHeader">
+                        <h1>Manage Clients</h1>
+                        <Link to={"/addClient"}>
+                            <button className="addClientButton" value="add client">
+                                <i className="fa-solid fa-circle-plus"></i>
+                                Add Client
+                            </button>
 
-                    </Link>
+                        </Link>
+                    </div>
+                    <div className="clientsTable">
+                        <table>
+                            <tbody>
+                                {clients.map((client) => (
+                                    <ClientItem key={client.client_id} client={client}
+                                        setServerResponded={setServerResponded} setClients={setClients} setError={setError} />
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                    {error ? (<p className="errorMessage">{error}</p>) : null}
                 </div>
-                <div className="clientsTable">
-                    <table>
-                        <tbody>
-                            {clients.map((client) => (
-                                <ClientItem key={client.client_id} client={client}
-                                    setServerResponded={setServerResponded} setClients={setClients} setError={setError} />
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-                {error ? (<p className="errorMessage">{error}</p>) : null}
             </div>
         ) : (
             <div className="loader"></div>

@@ -18,6 +18,7 @@ import { useState, useEffect } from 'react';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const [userName, setUserName] = useState('');
 
   const router = createBrowserRouter([
@@ -64,9 +65,9 @@ function App() {
 
   return (
     <>
-      <div className='mainBody'>
-        <RouterProvider router={router} />
-      </div>
+      {/* <div className='mainBody'> */}
+      <RouterProvider router={router} />
+      {/* </div> */}
     </>
   );
 }

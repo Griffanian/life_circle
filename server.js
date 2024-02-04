@@ -35,7 +35,7 @@ const db = require('knex')({
 const users = [
     {
         id: 1,
-        username: 'Admin',
+        username: 'Simon Bloom',
         password: process.env.ADMIN_PASSWORD,
     }
 ]

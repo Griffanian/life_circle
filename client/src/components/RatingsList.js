@@ -65,28 +65,30 @@ export default function RatingList() {
             var yyyy = today.getFullYear();
 
             today = mm + '/' + dd + '/' + yyyy;
-            downloadLink.download = "Col_" + getInitials(clientName) + '_' + today;
+            downloadLink.download = "Col_" + getInitials(clientName) + '_' + today + '.png';
             downloadLink.click();
         }
     };
 
     return (
-        <>
-            <RatingListHeader navigate={navigate} clientName={clientName} client_id_param={client_id_param} handleDownloadImage={handleDownloadImage} />
-            {serverResponded ? (
-                ratings.length > 0 ? (
-                    <>
-                        <RadarChart ratings={ratings} />
-                        <RatingTable categories={categories} ratings={ratings} handleDelete={handleDelete} />
-                    </>
-                ) : (
-                    <div className="noRatings">
-                        <p>This client has no ratings yet.</p>
-                    </div>
-                )
-            ) : (
-                <div className="loader"></div>
-            )}
-        </>
+        serverResponded ? (
+            <div className='mainBody'>
+                <RatingListHeader navigate={navigate} clientName={clientName} client_id_param={client_id_param} handleDownloadImage={handleDownloadImage} />
+                {
+                    ratings.length > 0 ? (
+                        <>
+                            <RadarChart ratings={ratings} />
+                            <RatingTable categories={categories} ratings={ratings} handleDelete={handleDelete} />
+                        </>
+                    ) : (
+                        <div className="noRatings">
+                            <p>This client has no ratings yet.</p>
+                        </div>
+                    )
+                }
+            </div>
+        ) : (
+            <div className="loader"></div>
+        )
     );
 }

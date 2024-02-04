@@ -36,9 +36,9 @@ export default function RatingTable({ categories, ratings, handleDelete }) {
                                         <Link to={"/editRating/" + rating.rating_id}>
                                             <i className="fa-solid fa-pen"></i>
                                         </Link>
-                                        <a onClick={(e) => handleDelete(e, rating.rating_id)}>
+                                        {/* <a onClick={(e) => handleDelete(e, rating.rating_id)}>
                                             <i className="fa-solid fa-trash"></i>
-                                        </a>
+                                        </a> */}
                                     </td>
                                 </tr>
                             )
