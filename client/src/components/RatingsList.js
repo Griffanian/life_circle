@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getInitials, addAverage } from "../frontEndFuncs/miscFuncs";
 import { getRatinglist, deleteRating } from "../frontEndFuncs/ratingFuncs";
 import RadarChart from './RadarChart';
@@ -37,9 +37,9 @@ export default function RatingList() {
         }
     }, [client_id_param]);
 
-    useEffect(() => {
-        setFilteredRatings(ratings)
-    }, [ratings])
+    // useEffect(() => {
+    //     setFilteredRatings(ratings)
+    // }, [ratings])
 
 
     function handleDelete(e, rating_id) {
@@ -84,7 +84,7 @@ export default function RatingList() {
                         <>
                             <RadarChart ratings={filteredRatings} />
                             <RatingsFilter ratings={ratings} setFilteredRatings={setFilteredRatings} />
-                            <RatingTable categories={categories} ratings={filteredRatings} handleDelete={handleDelete} />
+                            <RatingTable ratings={filteredRatings} handleDelete={handleDelete} />
                         </>
                     ) : (
                         <div className="noRatings">

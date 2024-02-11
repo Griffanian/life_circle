@@ -2,7 +2,9 @@ import { capitalize } from 'lodash';
 import { getFormattedDate } from '../frontEndFuncs/miscFuncs';
 import { Link } from 'react-router-dom';
 
-export default function RatingTable({ categories, ratings }) {
+export default function RatingTable({ ratings }) {
+    const prettyCategories = process.env.REACT_APP_PRETTY_CATEGORIES.split(',')
+    const categories = process.env.REACT_APP_CATEGORIES.split(',')
     return (
         <div className="ratingTable">
             <table>
@@ -11,7 +13,7 @@ export default function RatingTable({ categories, ratings }) {
                         <th>Date</th>
 
                         {
-                            categories.map((category) => {
+                            prettyCategories.map((category) => {
                                 return (<th className="catData" key={category} >{capitalize(category)}</th>)
                             })
                         }

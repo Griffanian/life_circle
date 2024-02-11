@@ -1,5 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react"
 import { Radar } from "react-chartjs-2";
 import { Chart as ChartJS } from 'chart.js/auto'
 import { CategoryScale } from "chart.js";
@@ -7,8 +6,7 @@ import { getFormattedDate } from "../frontEndFuncs/miscFuncs";
 
 ChartJS.register(CategoryScale);
 
-export default function RadarChart(props) {
-
+export default function RadarChart({ ratings }) {
     const categories = process.env.REACT_APP_CATEGORIES.split(',');
 
     const lineColors = [
@@ -40,31 +38,29 @@ export default function RadarChart(props) {
         return `rgb(${pointColor[0]},${pointColor[1]},${pointColor[2]})`
     }
 
+    const datasets = ratings.map((rating, index) => {
+        const color = lineColors[index % 7]
 
-    const [data, setData] = useState({
+        return (
+            {
+                label: getFormattedDate(rating.rating_date),
+                data: categories.map((category) => rating[category]),
+                fill: false,
+                backgroundColor: `rgba(${color[0]},${color[1]},${color[2]},0.2)`,
+                borderColor: `rgb(${color[0]},${color[1]},${color[2]})`,
+                pointBackgroundColor: (context) => getPointColorStr(context.raw),
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: `rgb(${color[0]},${color[1]},${color[2]})`,
+            }
+        )
+    });
+
+
+    const data = {
         labels: categories,
-        datasets: props.ratings.map((rating, index) => {
-            const color = lineColors[index % 7]
-
-            return (
-                {
-                    label: getFormattedDate(rating.rating_date),
-                    data: categories.map((category) => rating[category]),
-                    fill: false,
-                    backgroundColor: `rgba(${color[0]},${color[1]},${color[2]},0.2)`,
-                    borderColor: `rgb(${color[0]},${color[1]},${color[2]})`,
-                    pointBackgroundColor: (context) => getPointColorStr(context.raw),
-                    pointBorderColor: '#fff',
-                    pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: `rgb(${color[0]},${color[1]},${color[2]})`,
-                }
-            )
-        })
-    })
-
-    useEffect(() => {
-        console.log(props)
-    }, [])
+        datasets: datasets
+    }
 
     const circleDiameter = 10
     var pointSize = 6

@@ -22,7 +22,7 @@ export default function RatingsFilter({ ratings, setFilteredRatings }) {
     }, [after, date])
 
     return (
-        <div onChange={() => filterRatings()}>
+        <div className="ratingsFilter" onChange={() => filterRatings()}>
             <select name="filterType" value={after} onChange={(e) => { setAfter(e.target.value) }}>
                 <option value={false} >Before</option>
                 <option value={true}>After</option>

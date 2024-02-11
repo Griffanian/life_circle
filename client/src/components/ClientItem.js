@@ -1,4 +1,5 @@
 import { getInitials } from "../frontEndFuncs/miscFuncs";
+import { Link } from "react-router-dom";
 
 export default function ClientItem({ client }) {
     return (
