@@ -117,6 +117,7 @@ body,
 
 .sliderLabels {
   margin-bottom: 8px;
+  // position: relative;
 }
 
 .errorMessage {
@@ -304,7 +305,7 @@ input[type="submit"]:hover {
 .clientData {
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .clientIcons>a {
@@ -419,6 +420,18 @@ input[type="submit"]:hover {
   font-size: 20px;
 }
 
+.rs-slider {
+  left: 2px;
+}
+
+.sliderNums {
+  width: calc(100% + 11px);
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
 @media screen and (min-width: 767px) {
   .mainBody {
     width: 100%;
@@ -456,7 +469,6 @@ input[type="submit"]:hover {
 
   .clientData {
     width: 120px;
-    justify-content: space-between;
     gap: 10px;
   }
 

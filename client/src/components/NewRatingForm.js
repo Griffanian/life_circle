@@ -4,7 +4,7 @@ import { getClient } from '../frontEndFuncs/clientFuncs';
 import { createRating } from '../frontEndFuncs/ratingFuncs';
 import { capitalize } from 'lodash';
 import { getInitials } from '../frontEndFuncs/miscFuncs';
-import { Slider, RangeSlider } from 'rsuite';
+import { Slider } from 'rsuite';
 import 'rsuite/dist/rsuite-no-reset.min.css';
 
 export default function NewRatingForm() {
@@ -24,6 +24,8 @@ export default function NewRatingForm() {
     });
     const [serverResponded, setServerResponded] = useState(false);
     const [error, setError] = useState('')
+
+    const scaleValues = Array.from({ length: 10 }, (_, index) => index + 1);
 
     useEffect(() => {
         if (client_id_param) {
@@ -84,6 +86,11 @@ export default function NewRatingForm() {
                         <p>Name {getInitials(formData.client_name)} </p>
                         {categories.map((category) => (
                             <label className='sliderLabels' key={category}>{capitalize(category)}
+                                <div className='sliderNums'>
+                                    {scaleValues.map((val, index) => (
+                                        <div key={index}>{val}</div>
+                                    ))}
+                                </div>
                                 <Slider
                                     defaultValue={1}
                                     min={1}

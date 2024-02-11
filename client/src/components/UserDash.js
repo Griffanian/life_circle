@@ -1,15 +1,15 @@
-import { useState } from "react";
+import Cookies from 'js-cookie';
 
 export default function UserDash({ userName }) {
 
     const handleLogoutClick = () => {
-        document.cookie = `access-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        Cookies.remove('access-token')
         window.location.reload();
     };
 
     return (
         <div className="userHeader">
-            <a>Hi, {userName}</a>
+            <a>Hi, {userName.split(" ")[0]}</a>
             <button onClick={handleLogoutClick}>Logout</button>
         </div>
 

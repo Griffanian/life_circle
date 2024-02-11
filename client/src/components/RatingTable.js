@@ -2,7 +2,7 @@ import { capitalize } from 'lodash';
 import { getFormattedDate } from '../frontEndFuncs/miscFuncs';
 import { Link } from 'react-router-dom';
 
-export default function RatingTable({ categories, ratings, handleDelete }) {
+export default function RatingTable({ categories, ratings }) {
     return (
         <div className="ratingTable">
             <table>
@@ -36,9 +36,6 @@ export default function RatingTable({ categories, ratings, handleDelete }) {
                                         <Link to={"/editRating/" + rating.rating_id}>
                                             <i className="fa-solid fa-pen"></i>
                                         </Link>
-                                        {/* <a onClick={(e) => handleDelete(e, rating.rating_id)}>
-                                            <i className="fa-solid fa-trash"></i>
-                                        </a> */}
                                     </td>
                                 </tr>
                             )

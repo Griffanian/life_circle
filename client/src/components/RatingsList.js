@@ -6,6 +6,7 @@ import RadarChart from './RadarChart';
 import { getClient } from "../frontEndFuncs/clientFuncs";
 import RatingTable from "./RatingTable";
 import RatingListHeader from "./RatingListHeader";
+import RatingsFilter from "./RatingsFilter";
 
 export default function RatingList() {
 
@@ -15,6 +16,7 @@ export default function RatingList() {
     const [ratings, setRatings] = useState([])
     const [serverResponded, setServerResponded] = useState(false);
     const [clientName, setClientName] = useState('')
+    const [filteredRatings, setFilteredRatings] = useState([]);
 
     useEffect(() => {
         if (client_id_param) {
@@ -35,10 +37,12 @@ export default function RatingList() {
         }
     }, [client_id_param]);
 
+    useEffect(() => {
+        setFilteredRatings(ratings)
+    }, [ratings])
 
 
-
-    const handleDelete = (e, rating_id) => {
+    function handleDelete(e, rating_id) {
         e.preventDefault()
         setServerResponded(false)
         deleteRating(rating_id)
@@ -50,6 +54,7 @@ export default function RatingList() {
                 }
             })
     }
+
     function handleDownloadImage(e) {
         e.preventDefault();
 
@@ -61,7 +66,7 @@ export default function RatingList() {
             downloadLink.href = chartCanvas.toDataURL();
             var today = new Date();
             var dd = String(today.getDate()).padStart(2, '0');
-            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var mm = String(today.getMonth() + 1).padStart(2, '0');
             var yyyy = today.getFullYear();
 
             today = mm + '/' + dd + '/' + yyyy;
@@ -77,8 +82,9 @@ export default function RatingList() {
                 {
                     ratings.length > 0 ? (
                         <>
-                            <RadarChart ratings={ratings} />
-                            <RatingTable categories={categories} ratings={ratings} handleDelete={handleDelete} />
+                            <RadarChart ratings={filteredRatings} />
+                            <RatingsFilter ratings={ratings} setFilteredRatings={setFilteredRatings} />
+                            <RatingTable categories={categories} ratings={filteredRatings} handleDelete={handleDelete} />
                         </>
                     ) : (
                         <div className="noRatings">
