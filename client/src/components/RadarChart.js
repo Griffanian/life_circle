@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
 import { Radar } from "react-chartjs-2";
 import { Chart as ChartJS } from 'chart.js/auto'
 import { CategoryScale } from "chart.js";
@@ -8,12 +7,6 @@ import { getFormattedDate } from "../frontEndFuncs/miscFuncs";
 ChartJS.register(CategoryScale);
 
 export default function RadarChart({ ratings }) {
-
-    useEffect(() => {
-        console.log("Mount item");
-        return () => console.log("Unmount item");
-    }, []);
-
     const categories = process.env.REACT_APP_CATEGORIES.split(',');
     const pretty_categories = process.env.REACT_APP_PRETTY_CATEGORIES.split(',');
 
@@ -77,9 +70,12 @@ export default function RadarChart({ ratings }) {
     if (window.innerWidth >= 765) {
         pointSize = 11;
         fontSize = 20
-    } else if (window.innerWidth >= 570) {
+    } else if (window.innerWidth >= 680) {
         pointSize = 8;
         fontSize = 15
+    } else if (window.innerWidth >= 570) {
+        pointSize = 7;
+        fontSize = 12
     }
 
     return (
