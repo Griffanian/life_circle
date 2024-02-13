@@ -64,20 +64,20 @@ export default function RadarChart({ ratings }) {
     }
 
     const circleDiameter = 10
-    var pointSize = 6
-    var fontSize = 10
+    var pointSize = 6;
+    var fontSize = 10;
 
     if (window.innerWidth >= 765) {
         pointSize = 11;
-        fontSize = 20
+        fontSize = 20;
     } else if (window.innerWidth >= 680) {
         pointSize = 8;
-        fontSize = 15
+        fontSize = 12;
+
+    } else if (window.innerWidth >= 570) {
+        pointSize = 7;
+        fontSize = 12;
     }
-    // } else if (window.innerWidth >= 570) {
-    //     pointSize = 7;
-    //     fontSize = 12
-    // }
 
     return (
         <div className='chart-container'>
