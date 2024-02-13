@@ -443,8 +443,7 @@ input[type="submit"]:hover {
   align-items: center;
   justify-content: space-between;
   margin: auto;
-  padding: 0 20px;
-  width: 405px;
+  width: 330px;
 
 }
 
@@ -454,7 +453,7 @@ input[type="submit"]:hover {
   border: 1px solid $secondary-color;
   border-radius: 5px;
   margin-right: 10px;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .ratingsFilterContainer button {
@@ -465,7 +464,7 @@ input[type="submit"]:hover {
   color: #fff;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .ratingsFilterContainer button:hover {
