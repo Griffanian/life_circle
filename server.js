@@ -42,12 +42,16 @@ const users = [
 
 const verifyToken = (req, res, next) => {
     if (!req.headers.cookie) {
-        return res.status(403).json({ message: 'No cookies found' });
+        return res.status(401).json({
+            ok: true,
+            message: 'No cookies found'
+        });
     }
 
     const cookies = req.headers.cookie.split(';');
 
     let token = null;
+
     for (const cookie of cookies) {
         const trimmedCookie = cookie.trim();
         const parts = trimmedCookie.split('=');
@@ -58,13 +62,18 @@ const verifyToken = (req, res, next) => {
     }
 
     if (!token) {
-        return res.status(403).json({ message: 'Token not provided' });
-        next();
+        return res.status(403).json({
+            ok: true,
+            message: 'Token not provided'
+        });
     }
 
     verify(token, secretKey, (err, decoded) => {
         if (err) {
-            return res.status(401).json({ message: 'Failed to authenticate token' });
+            return res.status(401).json({
+                ok: true,
+                message: 'Failed to authenticate token'
+            });
         }
 
         req.decoded = decoded;
@@ -89,6 +98,7 @@ apiRouter.use(checkRoute)
 apiRouter.get('/', (req, res) => {
     res.send({
         ok: true,
+        loggedIn: true,
         message: 'connection established',
         username: req.decoded.username
     })
