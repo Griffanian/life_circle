@@ -39,6 +39,7 @@ body,
   box-sizing: border-box;
   background-color: $background-color;
   color: $opposite-background-color;
+  padding: 10px 20px;
 }
 
 .logo {
@@ -140,7 +141,7 @@ body,
 
 .userHeader button {
   padding: 5px 10px;
-  background-color: #326aff;
+  background-color: $primary-color;
   color: white;
   border: none;
   border-radius: 6px;
@@ -362,6 +363,7 @@ input[type="submit"]:hover {
 
 .logoutButton {
   width: fit-content;
+
 }
 
 .ratingTable {
