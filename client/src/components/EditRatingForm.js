@@ -91,6 +91,8 @@ const EditRatingForm = () => {
         }
     }
 
+    const scaleValues = Array.from({ length: 10 }, (_, index) => index + 1);
+
     return (
         serverResponded ? (
             <div className='mainBody'>
@@ -107,6 +109,11 @@ const EditRatingForm = () => {
                         <p>Name {getInitials(formData.client_name)} </p>
                         {categories.map((category) => (
                             <label className='sliderLabels' key={category}>{capitalize(category)}
+                                <div className='sliderNums'>
+                                    {scaleValues.map((val, index) => (
+                                        <div key={index}>{val}</div>
+                                    ))}
+                                </div>
                                 <Slider
                                     defaultValue={formData.ratings[category] ? formData.ratings[category] : ''}
                                     min={1}

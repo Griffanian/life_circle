@@ -5,7 +5,7 @@ export default function RatingListHeader({ navigate, clientName, client_id_param
         <div className="ratingListHeader">
             <div>
                 <a onClick={() => navigate(-1)}><i className="fa-solid fa-arrow-left-long"></i></a>
-                <h1>Client Ratings</h1>
+                <h1>Ratings</h1>
                 <Link to={`/addRating/${client_id_param}`}>
                     <div className="ratingIcons">
                         <i className="fa-solid fa-circle-plus"></i>

@@ -37,11 +37,6 @@ export default function RatingList() {
         }
     }, [client_id_param]);
 
-    // useEffect(() => {
-    //     setFilteredRatings(ratings)
-    // }, [ratings])
-
-
     function handleDelete(e, rating_id) {
         e.preventDefault()
         setServerResponded(false)

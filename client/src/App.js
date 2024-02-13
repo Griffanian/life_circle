@@ -65,9 +65,7 @@ function App() {
 
   return (
     <>
-      {/* <div className='mainBody'> */}
       <RouterProvider router={router} />
-      {/* </div> */}
     </>
   );
 }

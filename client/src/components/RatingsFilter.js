@@ -6,11 +6,14 @@ export default function RatingsFilter({ ratings, setFilteredRatings }) {
     const [date, setDate] = useState(new Date())
 
     function filterRatings() {
-        if (after) {
-            setFilteredRatings(ratings.filter((rating) => new Date(rating.rating_date) > date))
-        } else {
-            setFilteredRatings(ratings.filter((rating) => new Date(rating.rating_date) < date))
-        }
+        setFilteredRatings(ratings.filter(rating => {
+            const ratingDate = new Date(rating.rating_date);
+            if (after) {
+                return ratingDate > date || ratingDate.getDate() === date.getDate();
+            } else {
+                return ratingDate < date || ratingDate.getDate() === date.getDate();
+            }
+        }))
     }
     function resetFilter() {
         setAfter(false)
@@ -22,13 +25,13 @@ export default function RatingsFilter({ ratings, setFilteredRatings }) {
     }, [after, date])
 
     return (
-        <div className="ratingsFilter" onChange={() => filterRatings()}>
-            <select name="filterType" value={after} onChange={(e) => { setAfter(e.target.value) }}>
-                <option value={false} >Before</option>
+        <div className="ratingsFilterContainer">
+            <select name="filterType" value={after} onChange={() => setAfter(!after)}>
+                <option value={false}>Before</option>
                 <option value={true}>After</option>
             </select>
             <input value={date.toISOString().split('T')[0]} type='date' onChange={(e) => setDate(new Date(e.target.value))}></input>
-            <button onClick={() => resetFilter()}>reset</button>
-        </div >
+            <button onClick={() => resetFilter()}>Reset</button>
+        </div>
     )
 }

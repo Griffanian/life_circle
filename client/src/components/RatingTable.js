@@ -1,4 +1,3 @@
-import { capitalize } from 'lodash';
 import { getFormattedDate } from '../frontEndFuncs/miscFuncs';
 import { Link } from 'react-router-dom';
 
@@ -14,7 +13,7 @@ export default function RatingTable({ ratings }) {
 
                         {
                             prettyCategories.map((category) => {
-                                return (<th className="catData" key={category} >{capitalize(category)}</th>)
+                                return (<th className="catData" key={category} >{category}</th>)
                             })
                         }
                         <th>Average</th>

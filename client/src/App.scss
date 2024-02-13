@@ -261,6 +261,10 @@ input[type="submit"]:hover {
   font-size: 15px;
 }
 
+.addClientButton {
+  white-space: nowrap;
+}
+
 .ratingListHeader button {
   height: 25px;
   font-size: 23px;
@@ -303,7 +307,7 @@ input[type="submit"]:hover {
 }
 
 .clientData {
-  width: 100%;
+  width: 80px;
   display: flex;
   justify-content: space-between;
 }
@@ -425,13 +429,47 @@ input[type="submit"]:hover {
 }
 
 .sliderNums {
-  width: calc(100% + 11px);
+  width: calc(100% + 13px);
   display: flex;
   justify-content: space-between;
 }
 
 .ratingsFilter {
   margin: auto;
+}
+
+.ratingsFilterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+  padding: 0 20px;
+  width: 405px;
+
+}
+
+.ratingsFilterContainer select,
+.ratingsFilterContainer input {
+  padding: 8px;
+  border: 1px solid $secondary-color;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.ratingsFilterContainer button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: $primary-color;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 20px;
+}
+
+.ratingsFilterContainer button:hover {
+  background-color: $lighter-primary-color;
 }
 
 
@@ -461,7 +499,7 @@ input[type="submit"]:hover {
 
   .addClientButton,
   .ratingListHeader button {
-    width: 130px;
+    width: 140px;
   }
 
   .addClientButton,
@@ -472,7 +510,7 @@ input[type="submit"]:hover {
 
   .clientData {
     width: 120px;
-    gap: 10px;
+
   }
 
   .ratingData,
@@ -564,7 +602,7 @@ input[type="submit"]:hover {
   }
 
   .addClientButton {
-    width: 185px;
+    width: 200px;
     height: 58px;
   }
 
