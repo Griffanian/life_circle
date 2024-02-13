@@ -73,10 +73,11 @@ export default function RadarChart({ ratings }) {
     } else if (window.innerWidth >= 680) {
         pointSize = 8;
         fontSize = 15
-    } else if (window.innerWidth >= 570) {
-        pointSize = 7;
-        fontSize = 12
     }
+    // } else if (window.innerWidth >= 570) {
+    //     pointSize = 7;
+    //     fontSize = 12
+    // }
 
     return (
         <div className='chart-container'>
