@@ -1,4 +1,4 @@
-const globals = require('../client/src/globals.js')
+const { globals } = require('./dbTransactions.js');
 const CATEGORIES = globals.CATEGORIES;
 
 function getClientParams(req) {

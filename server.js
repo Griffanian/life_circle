@@ -3,9 +3,9 @@ require('dotenv').config()
 const app = express()
 const cors = require('cors');
 const fs = require('fs');
-const config = JSON.parse(fs.readFileSync('config.json', 'utf-8'));
+const config = JSON.parse(fs.readFileSync('./server/config.json', 'utf-8'));
 const path = require('path');
-const apiRouter = require('./routes/api.js');
+const apiRouter = require('./server/routes/api.js');
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

@@ -1,5 +1,6 @@
 const fs = require('fs');
-const config = JSON.parse(fs.readFileSync('config.json', 'utf-8'));
+const config = JSON.parse(fs.readFileSync('./server/config.json', 'utf-8'));
+const globals = require('../../client/src/globals.js')
 require('dotenv').config();
 
 const db_options = config.db_options;
@@ -33,4 +34,4 @@ function validateClientParams(client_params) {
 }
 
 
-module.exports = { db, validateClientName, validateClientParams };
+module.exports = { db, config, globals, validateClientName, validateClientParams };

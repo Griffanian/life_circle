@@ -11,7 +11,7 @@ async function updateClient(trx, client_params) {
         .returning('*');
     const newClient = newClientlist[0];
     return newClient;
-}
+};
 
 async function editClientTransaction(client_params) {
     return new Promise(async (resolve, reject) => {
@@ -21,11 +21,11 @@ async function editClientTransaction(client_params) {
             const isClient = await getIsClient(trx, client_id);
             if (!isClient) reject('Client does not exist');
 
-            const editedClient = updateClient(trx, client_params);
+            const editedClient = await updateClient(trx, client_params);
             resolve(editedClient);
         });
-    })
-}
+    });
+};
 
 async function editClient(client_params) {
     try {
@@ -38,7 +38,7 @@ async function editClient(client_params) {
         });
     } catch (error) {
         return getErrorReturn(error);
-    }
-}
+    };
+};
 
 module.exports = editClient;

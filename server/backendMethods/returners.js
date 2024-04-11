@@ -1,5 +1,4 @@
-const fs = require('fs');
-const config = JSON.parse(fs.readFileSync('config.json', 'utf-8'));
+const { config } = require('../backendMethods/dbTransactions.js');
 
 function getDataReturn(type, data) {
     const typeObj = config.resTypes[type]

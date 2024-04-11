@@ -1,8 +1,7 @@
-const fs = require('fs');
-const config = JSON.parse(fs.readFileSync('config.json', 'utf-8'));
+const { config } = require('./dbTransactions.js');
 
 function sendError(res, error, code = 500) {
-    // console.log(error);
+    console.log(error);
     return res.status(code).send({
         ok: false,
         error

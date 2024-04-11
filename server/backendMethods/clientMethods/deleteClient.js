@@ -7,7 +7,7 @@ async function deleteRatingsDB(trx, client_id) {
         .from('ratings')
         .where({ client_id })
         .del()
-        .returning('*')
+        .returning('*');
     return;
 }
 
@@ -46,5 +46,6 @@ async function deleteClient(client_id) {
     } catch (error) {
         return getErrorReturn(error);
     };
-}
+};
+
 module.exports = deleteClient;
