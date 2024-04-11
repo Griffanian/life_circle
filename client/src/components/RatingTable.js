@@ -1,9 +1,10 @@
 import { getFormattedDate } from '../frontEndFuncs/miscFuncs';
 import { Link } from 'react-router-dom';
+import globals from "../globals";
 
 export default function RatingTable({ ratings }) {
-    const prettyCategories = process.env.REACT_APP_PRETTY_CATEGORIES.split(',')
-    const categories = process.env.REACT_APP_CATEGORIES.split(',')
+    const categories = globals.CATEGORIES;
+    const prettyCategories = globals.PRETTY_CATEGORIES;
     return (
         <div className="ratingTable">
             <table>

@@ -1,0 +1,86 @@
+{
+    "db_options": {
+        "client": "pg",
+        "version": "7.2",
+        "connection": {
+            "host": "surus.db.elephantsql.com",
+            "user": "keocaula",
+            "database": "keocaula"
+        }
+    },
+    "cors_options": {
+        "origin": [
+            "http://localhost:8080",
+            "http://localhost:8081"
+        ],
+        "credentials": true,
+        "exposedHeaders": [
+            "Set-Cookie"
+        ]
+    },
+    "cookie_options": {
+        "maxAge": 604800000,
+        "sameSite": false,
+        "secure": true
+    },
+    "resTypes": {
+        "token": {
+            "dbName": {
+                "token": "token"
+            },
+            "message": "User logged in successfully"
+        },
+        "clientsList": {
+            "dbName": {
+                "clientsList": "client_list"
+            },
+            "message": "Got all clients successfully"
+        },
+        "newClient": {
+            "dbName": {
+                "newClient": "new_client"
+            },
+            "message": "Client created successfully"
+        },
+        "editedClient": {
+            "dbName": {
+                "editedClient": "new_client"
+            },
+            "message": "Client edited successfully"
+        },
+        "deletedClient": {
+            "dbName": {
+                "deletedClient": "client_name"
+            },
+            "message": "Client deleted successfully"
+        },
+        "ratingsList": {
+            "dbName": {
+                "clientId": "client_id",
+                "clientName": "client_name",
+                "ratingsList": "ratings"
+            },
+            "message": "Got all ratings successfully"
+        },
+        "rating": {
+            "dbName": {
+                "clientId": "client_id",
+                "clientName": "client_name",
+                "rating": "rating"
+            },
+            "message": "Got rating successfully"
+        },
+        "newRating": {
+            "dbName": {
+                "newRating": "new_rating"
+            },
+            "message": "Rating created successfully"
+        },
+        "deletedRating": {
+            "dbName": {
+                "deletedRating": "rating_id"
+            },
+            "message": "Rating deleted successfully"
+        }
+    }
+}

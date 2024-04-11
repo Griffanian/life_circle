@@ -29,8 +29,7 @@ function getDaySuffix(day) {
 }
 
 async function getIsLoggedIn() {
-
-    const baseUrl = new URL(`api/`, process.env.REACT_APP_BASE_URL)
+    const baseUrl = new URL(`api/`, global.config.BASE_URL)
     return fetch(baseUrl, {
         method: "GET",
         headers: {
@@ -60,8 +59,7 @@ async function getIsLoggedIn() {
 }
 
 async function login(username, password) {
-
-    const loginUrl = new URL('api/login', process.env.REACT_APP_BASE_URL)
+    const loginUrl = new URL('api/login', global.config.BASE_URL)
 
     const bodyObj = {
         username,
@@ -80,7 +78,6 @@ async function login(username, password) {
     })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
             return data
         })
         .catch((error) => {

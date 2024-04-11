@@ -7,12 +7,13 @@ import { getClient } from "../frontEndFuncs/clientFuncs";
 import RatingTable from "./RatingTable";
 import RatingListHeader from "./RatingListHeader";
 import RatingsFilter from "./RatingsFilter";
+import globals from "../globals";
 
 export default function RatingList() {
 
     let { client_id_param } = useParams()
     const navigate = useNavigate()
-    const categories = process.env.REACT_APP_CATEGORIES.split(',')
+    const categories = globals.CATEGORIES;
     const [ratings, setRatings] = useState([])
     const [serverResponded, setServerResponded] = useState(false);
     const [clientName, setClientName] = useState('')
@@ -69,6 +70,10 @@ export default function RatingList() {
             downloadLink.click();
         }
     };
+
+    useEffect(() => {
+        console.log('filteredRatings', filteredRatings);
+    }, [filteredRatings]);
 
     return (
         serverResponded ? (

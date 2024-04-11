@@ -3,17 +3,23 @@ import { Radar } from "react-chartjs-2";
 import { Chart as ChartJS } from 'chart.js/auto'
 import { CategoryScale } from "chart.js";
 import { getFormattedDate } from "../frontEndFuncs/miscFuncs";
+import globals from "../globals";
 
 ChartJS.register(CategoryScale);
 
 export default function RadarChart({ ratings }) {
-    const categories = process.env.REACT_APP_CATEGORIES.split(',');
-    const pretty_categories = process.env.REACT_APP_PRETTY_CATEGORIES.split(',');
+
+    const categories = globals.CATEGORIES;
+    const pretty_categories = globals.PRETTY_CATEGORIES;
 
     const lineColors = [
         [255, 0, 0],    // Bright Red
         [255, 153, 0],  // Orange
         [128, 0, 128],  // Purple
+        [0, 255, 0],    // Green
+        [0, 0, 255],    // Blue
+        [255, 255, 0],  // Yellow
+        [0, 128, 128],  // Teal
     ];
 
     const pointColors = [
@@ -41,6 +47,7 @@ export default function RadarChart({ ratings }) {
 
     const datasets = ratings.map((rating, index) => {
         const color = lineColors[index % 7]
+        console.log('color', color)
 
         return (
             {

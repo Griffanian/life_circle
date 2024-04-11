@@ -5,7 +5,10 @@ import { createRating } from '../frontEndFuncs/ratingFuncs';
 import { capitalize } from 'lodash';
 import { getInitials } from '../frontEndFuncs/miscFuncs';
 import { Slider } from 'rsuite';
+import globals from "../globals";
 import 'rsuite/dist/rsuite-no-reset.min.css';
+
+const categories = globals.CATEGORIES;
 
 export default function NewRatingForm() {
     const navigate = useNavigate();
@@ -13,8 +16,6 @@ export default function NewRatingForm() {
     const { client_id_param } = useParams();
 
     const currentDate = new Date().toISOString().split('T')[0];
-
-    const categories = process.env.REACT_APP_CATEGORIES.split(',');
 
     const [formData, setFormData] = useState({
         client_id: '',
@@ -64,7 +65,7 @@ export default function NewRatingForm() {
                     navigate("/ratings/" + formData.client_id);
                 } else {
                     setServerResponded(true);
-                    setError(data.message);
+                    setError(data.error);
                 }
             })
             .catch((error) => {

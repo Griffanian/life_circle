@@ -4,13 +4,13 @@ import { capitalize } from 'lodash';
 import { getRating, editRating, deleteRating } from '../frontEndFuncs/ratingFuncs';
 import { getFormattedDate, getInitials } from '../frontEndFuncs/miscFuncs';
 import { Slider } from 'rsuite';
+import globals from '../globals'
 
 const EditRatingForm = () => {
     const navigate = useNavigate();
     const { rating_id_param } = useParams();
     const currentDate = new Date().toISOString().split('T')[0];
-    const categories = process.env.REACT_APP_CATEGORIES.split(',');
-
+    const categories = globals.CATEGORIES;
     const [formData, setFormData] = useState({
         ratings: categories.reduce((acc, category) => {
             acc[category] = 1;
@@ -32,10 +32,10 @@ const EditRatingForm = () => {
                         ...formData,
                         client_id: data.client_id,
                         client_name: data.client_name,
-                        date: data.rating_date,
-                        rating_id: data.rating_id,
+                        date: data.rating.rating_date,
+                        rating_id: data.rating.rating_id,
                         ratings: categories.reduce((acc, category) => {
-                            acc[category] = data[category];
+                            acc[category] = data.rating[category];
                             return acc;
                         }, {}),
                     });

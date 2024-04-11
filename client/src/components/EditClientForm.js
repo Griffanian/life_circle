@@ -32,12 +32,12 @@ export default function EditClientForm() {
                     if (res.message === "success") {
                         navigate('/clients')
                     } else {
-                        setError("Error deleting client");
+                        console.log(res)
                         setServerResponded(true);
                     }
                 })
                 .catch((error) => {
-                    setError("Error deleting client:", error);
+                    console.log(error)
                 })
         }
     }

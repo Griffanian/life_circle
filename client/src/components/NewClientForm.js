@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { createClient } from '../frontEndFuncs/clientFuncs';
 
 
@@ -17,6 +17,8 @@ export default function NewClientForm() {
             .then(data => {
                 if (data.ok === true) {
                     navigate('/clients')
+                } else {
+                    console.log(data.error)
                 }
             })
     }

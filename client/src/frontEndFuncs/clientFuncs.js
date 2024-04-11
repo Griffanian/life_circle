@@ -1,8 +1,8 @@
 function getClientURL(client_id) {
     if (client_id) {
-        return new URL(`api/client/${client_id}`, process.env.REACT_APP_BASE_URL)
+        return new URL(`api/client/${client_id}`, global.config.BASE_URL)
     } else {
-        return new URL("api/clients/", process.env.REACT_APP_BASE_URL)
+        return new URL("api/clients/", global.config.BASE_URL)
     }
 
 }
@@ -22,9 +22,7 @@ async function createClient(bodyObj) {
     })
         .then(res => res.json())
         .then(data => {
-            if (data.ok) {
-                return data
-            }
+            return data
         })
         .catch((error) => {
             console.error('Error:', error);
