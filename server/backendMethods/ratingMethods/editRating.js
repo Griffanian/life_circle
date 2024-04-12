@@ -1,6 +1,6 @@
 const { db } = require('../dbTransactions');
 const { getIsRating } = require("./getIsRating");
-const { getDataReturn, getErrorReturn } = require("../returners");
+const { getDataReturn, getErrorReturn } = require("../../returners");
 
 async function insertRating(trx, ratingObj) {
     const ratingsList = await trx('ratings')

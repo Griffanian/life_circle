@@ -1,4 +1,4 @@
-const { getDataReturn, getErrorReturn } = require('../returners')
+const { getDataReturn, getErrorReturn } = require('../../returners')
 const { db, validateClientParams } = require('../dbTransactions')
 const { getIsClient } = require('./getIsClient')
 

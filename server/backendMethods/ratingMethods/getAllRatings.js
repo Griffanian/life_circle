@@ -1,5 +1,5 @@
 const { db } = require('../dbTransactions');
-const { getErrorReturn, getDataReturn } = require("../returners");
+const { getErrorReturn, getDataReturn } = require("../../returners");
 const { getClient } = require("../clientMethods/getClient");
 
 async function getRatingsList(trx, client_id) {

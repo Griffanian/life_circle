@@ -1,5 +1,5 @@
 const { db } = require('../dbTransactions')
-const { getDataReturn, getErrorReturn } = require('../returners')
+const { getDataReturn, getErrorReturn } = require('../../returners')
 const { getIsClient } = require('./getIsClient')
 
 async function deleteRatingsDB(trx, client_id) {

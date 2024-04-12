@@ -1,6 +1,6 @@
 const { db, validateClientName } = require('../dbTransactions');
 const { getIsClient } = require('../clientMethods/getIsClient');
-const { getDataReturn, getErrorReturn } = require('../returners');
+const { getDataReturn, getErrorReturn } = require('../../returners');
 
 
 async function insertClient(trx, client_name) {
