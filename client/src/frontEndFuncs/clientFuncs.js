@@ -1,15 +1,15 @@
-function getClientURL(client_id) {
-    if (client_id) {
-        return new URL(`api/client/${client_id}`, global.config.BASE_URL)
-    } else {
-        return new URL("api/clients/", global.config.BASE_URL)
-    }
+import getDataReturn from '../';
 
+function getClientURL(client_id) {
+    return new URL(`api/client/${client_id}`, global.config.BASE_URL)
+};
+
+function getClientsURL() {
+    return new URL('api/clients', global.config.BASE_URL)
 }
 
-async function createClient(bodyObj) {
-
-    const client_url = getClientURL()
+async function _createClient(bodyObj) {
+    const client_url = getClientsURL()
 
     return fetch(client_url, {
         method: "POST",
@@ -18,16 +18,17 @@ async function createClient(bodyObj) {
         },
         body: JSON.stringify(bodyObj),
         credentials: "include",
-
     })
-        .then(res => res.json())
-        .then(data => {
-            return data
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            console.log("server is down!!")
-        })
+};
+
+async function createClient(bodyObj) {
+    try {
+        const createdClient = await _createClient(bodyObj);
+        const clientRes = await createdClient.json();
+        return clientRes;
+    } catch (error) {
+        console.error('Error:', error);
+    };
 }
 
 async function getClientList() {

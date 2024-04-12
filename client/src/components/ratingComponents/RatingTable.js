@@ -1,6 +1,6 @@
-import { getFormattedDate } from '../frontEndFuncs/miscFuncs';
+import { getFormattedDate } from '../../frontEndFuncs/miscFuncs';
 import { Link } from 'react-router-dom';
-import globals from "../globals";
+import globals from "../../globals";
 
 export default function RatingTable({ ratings }) {
     const categories = globals.CATEGORIES;

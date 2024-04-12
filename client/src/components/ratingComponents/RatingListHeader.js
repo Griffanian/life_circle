@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { getInitials } from "../frontEndFuncs/miscFuncs"
+import { getInitials } from "../../frontEndFuncs/miscFuncs"
 export default function RatingListHeader({ navigate, clientName, client_id_param, handleDownloadImage }) {
     return (
         <div className="ratingListHeader">

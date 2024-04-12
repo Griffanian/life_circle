@@ -1,4 +1,4 @@
-const { config } = require('../backendMethods/dbTransactions.js');
+const { config } = require('./backendMethods/dbTransactions');
 
 function getDataReturn(type, data) {
     const typeObj = config.resTypes[type]

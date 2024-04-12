@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createClient } from '../frontEndFuncs/clientFuncs';
+import { createClient } from '../../frontEndFuncs/clientFuncs';
 
 
 export default function NewClientForm() {

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { capitalize } from 'lodash';
-import { getRating, editRating, deleteRating } from '../frontEndFuncs/ratingFuncs';
-import { getFormattedDate, getInitials } from '../frontEndFuncs/miscFuncs';
+import { getRating, editRating, deleteRating } from '../../frontEndFuncs/ratingFuncs';
+import { getFormattedDate, getInitials } from '../../frontEndFuncs/miscFuncs';
 import { Slider } from 'rsuite';
-import globals from '../globals'
+import globals from '../../globals'
 
 const EditRatingForm = () => {
     const navigate = useNavigate();

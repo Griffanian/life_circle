@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { getClientList } from "../frontEndFuncs/clientFuncs";
+import { getClientList } from "../../frontEndFuncs/clientFuncs";
 import ClientItem from "./ClientItem";
 
 const ClientList = () => {

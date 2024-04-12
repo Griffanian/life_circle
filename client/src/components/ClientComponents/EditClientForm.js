@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate, useHis } from 'react-router-dom';
-import { getClient, editClient, deleteClient } from '../frontEndFuncs/clientFuncs';
+import { getClient, editClient, deleteClient } from '../../frontEndFuncs/clientFuncs';
 
 export default function EditClientForm() {
     const navigate = useNavigate()

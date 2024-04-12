@@ -1,10 +1,10 @@
 import Layout from './components/Layout';
-import ClientList from './components/ClientList';
-import NewClientForm from './components/NewClientForm';
-import EditClientForm from './components/EditClientForm';
-import NewRatingForm from './components/NewRatingForm';
-import EditRatingForm from './components/EditRatingForm';
-import RatingList from './components/RatingsList';
+import ClientList from './components/ClientComponents/ClientList';
+import NewClientForm from './components/ClientComponents/NewClientForm';
+import EditClientForm from './components/ClientComponents/EditClientForm';
+import NewRatingForm from './components/ratingComponents/NewRatingForm';
+import EditRatingForm from './components/ratingComponents/EditRatingForm';
+import RatingList from './components/ratingComponents/RatingsList';
 import Login from './components/Login';
 import { getIsLoggedIn } from './frontEndFuncs/miscFuncs';
 

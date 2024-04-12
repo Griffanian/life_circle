@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom";
-import { getInitials, addAverage } from "../frontEndFuncs/miscFuncs";
-import { getRatinglist, deleteRating } from "../frontEndFuncs/ratingFuncs";
-import RadarChart from './RadarChart';
-import { getClient } from "../frontEndFuncs/clientFuncs";
+import { getInitials, addAverage } from "../../frontEndFuncs/miscFuncs";
+import { getRatinglist, deleteRating } from "../../frontEndFuncs/ratingFuncs";
+import RadarChart from '../RadarChart';
+import { getClient } from "../../frontEndFuncs/clientFuncs";
 import RatingTable from "./RatingTable";
 import RatingListHeader from "./RatingListHeader";
-import RatingsFilter from "./RatingsFilter";
-import globals from "../globals";
+import RatingsFilter from "../RatingsFilter";
+import globals from "../../globals";
 
 export default function RatingList() {
 

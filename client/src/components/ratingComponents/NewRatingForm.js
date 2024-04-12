@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { getClient } from '../frontEndFuncs/clientFuncs';
-import { createRating } from '../frontEndFuncs/ratingFuncs';
+import { getClient } from '../../frontEndFuncs/clientFuncs';
+import { createRating } from '../../frontEndFuncs/ratingFuncs';
 import { capitalize } from 'lodash';
-import { getInitials } from '../frontEndFuncs/miscFuncs';
+import { getInitials } from '../../frontEndFuncs/miscFuncs';
 import { Slider } from 'rsuite';
-import globals from "../globals";
+import globals from "../../globals";
 import 'rsuite/dist/rsuite-no-reset.min.css';
 
 const categories = globals.CATEGORIES;
