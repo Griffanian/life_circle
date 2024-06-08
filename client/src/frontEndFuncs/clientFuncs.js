@@ -1,5 +1,3 @@
-import getDataReturn from '../';
-
 function getClientURL(client_id) {
     return new URL(`api/client/${client_id}`, global.config.BASE_URL)
 };
@@ -33,7 +31,7 @@ async function createClient(bodyObj) {
 
 async function getClientList() {
     try {
-        const client_url = getClientURL()
+        const client_url = getClientsURL()
 
         const client_list = await fetch(client_url, {
             method: "GET",
