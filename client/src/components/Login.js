@@ -11,7 +11,7 @@ export default function Login() {
         login(userName, password)
             .then((res) => {
                 if (res.ok) {
-                    window.location.reload()
+                    // window.location.reload()
                 } else {
                     setError(res.message)
                 }
