@@ -45,7 +45,6 @@ async function getAllRatings(client_id) {
         const dataObj = getDataObj(ratingsList, clientObj);
         return getDataReturn('ratingsList', dataObj);
     } catch (error) {
-        // console.log('error', error);
         return getErrorReturn(error);
     };
 };

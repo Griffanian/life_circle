@@ -32,7 +32,6 @@ export default function EditClientForm() {
                     if (res.message === "success") {
                         navigate('/clients')
                     } else {
-                        console.log(res)
                         setServerResponded(true);
                     }
                 })

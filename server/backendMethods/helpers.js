@@ -1,7 +1,6 @@
 const { globals } = require('./dbTransactions.js');
 const { validateID, validateClientName, validateDate } = require('./dbTransactions.js');
 const { getDataReturn, getErrorReturn } = require('../backendMethods/returners.js');
-const { get } = require('../routes/ratings.js');
 
 const CATEGORIES = globals.CATEGORIES;
 

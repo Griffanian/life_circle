@@ -40,7 +40,6 @@ async function getIsLoggedIn() {
     })
         .then(res => res.json())
         .then(data => {
-            console.log('data', data)
             if (data.ok) {
                 return {
                     loggedIn: true,

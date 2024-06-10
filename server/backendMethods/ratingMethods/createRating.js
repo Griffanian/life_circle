@@ -29,7 +29,6 @@ async function createRatingTransaction(ratingObj) {
 }
 
 async function createRating(ratingsObj) {
-    console.log('ratingsObj:', ratingsObj);
     try {
         const newRating = await createRatingTransaction(ratingsObj);
         return getDataReturn('newRating', newRating);

@@ -13,7 +13,7 @@
     "ts-node": "^10.9.2"
   },
   "scripts": {
-    "start": "npm i && node server.js",
+    "start": "npm i && node main.js",
     "build": "cd client && npm i && npm run build",
     "dev": "nodemon server.js"
   },

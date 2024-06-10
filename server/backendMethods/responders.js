@@ -18,7 +18,6 @@ function sendData(res, data, code = 200) {
 }
 
 function sendResponse(res, dbRes) {
-    // console.log('dbRes', dbRes);
     if (dbRes.success) {
         return sendData(res, dbRes);
     } else {

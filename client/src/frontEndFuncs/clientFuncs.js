@@ -46,7 +46,6 @@ async function getClientList() {
                 return res.json();
             })
             .then(data => {
-                console.log(data)
                 if (data && data.client_list) {
                     return data.client_list;
                 } else {

@@ -20,8 +20,7 @@ ratingsRouter.post('/', async (req, res) => {
 });
 
 ratingsRouter.put('/', async (req, res) => {
-    const ratingObjRes = getRatingObj(req);
-    console.log('ratingObjRes:', ratingObjRes);
+    const ratingObjRes = getRatingObj(req); ß
     if (ratingObjRes.success) {
         const editedRatingRes = await editRating(ratingObjRes.rating_id);
         return sendResponse(res, editedRatingRes);

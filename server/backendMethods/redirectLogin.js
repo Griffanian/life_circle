@@ -76,7 +76,6 @@ function verifyToken(token, secretKey) {
 };
 
 const redirectLogin = async function (req, res, next) {
-    console.log('req', req);
     const reqInfo = getReqInfo(req);
 
     if (reqInfo.isLoginPath) return next();

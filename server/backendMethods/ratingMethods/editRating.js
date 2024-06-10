@@ -39,7 +39,6 @@ async function editRating(ratingObj) {
         const newRating = await editRatingTransaction(ratingObj);
         return getDataReturn('newRating', newRating);
     } catch (error) {
-        // console.log('error', error);
         return getErrorReturn('error', error);
     }
 }
