@@ -43,6 +43,13 @@
             },
             "message": "Validated client name successfully"
         },
+        "clientParams": {
+            "dbName": {
+                "client_name": "client_name",
+                "client_id": "client_id"
+            },
+            "message": "Got client parameters successfully"
+        },
         "ratingId": {
             "dbName": {
                 "ratingId": "rating_id"
@@ -57,7 +64,16 @@
         },
         "categories": {
             "dbName": {
-                "categories": "categories"
+                "energy": "energy",
+                "work/income": "work/income",
+                "partner": "partner",
+                "children/next_gen": "children/next_gen",
+                "friends": "friends",
+                "life_attitude": "life_attitude",
+                "family": "family",
+                "intel/acad": "intel/acad",
+                "giving_back": "giving_back",
+                "hobbies": "hobbies"
             },
             "message": "Validated categories successfully"
         },
@@ -65,7 +81,16 @@
             "dbName": {
                 "ratingId": "rating_id",
                 "ratingDate": "rating_date",
-                "categories": "categories"
+                "energy": "energy",
+                "work/income": "work/income",
+                "partner": "partner",
+                "children/next_gen": "children/next_gen",
+                "friends": "friends",
+                "life_attitude": "life_attitude",
+                "family": "family",
+                "intel/acad": "intel/acad",
+                "giving_back": "giving_back",
+                "hobbies": "hobbies"
             },
             "message": "Validated rating object successfully"
         },
@@ -111,7 +136,19 @@
         },
         "newRating": {
             "dbName": {
-                "newRating": "new_rating"
+                "rating_id": "rating_id",
+                "energy": "energy",
+                "work/income": "work/income",
+                "partner": "partner",
+                "children/next_gen": "children/next_gen",
+                "friends": "friends",
+                "life_attitude": "life_attitude",
+                "family": "family",
+                "intel/acad": "intel/acad",
+                "giving_back": "giving_back",
+                "hobbies": "hobbies",
+                "rating_date": "rating_date",
+                "client_id": "client_id"
             },
             "message": "Rating created successfully"
         },

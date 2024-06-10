@@ -8,7 +8,8 @@ async function insertRating(trx, ratingObj) {
         .update(ratingObj)
         .returning('*');
 
-    return ratingsList;
+    const newRating = ratingsList[0];
+    return newRating;
 }
 
 async function editRatingTransaction(ratingObj) {
@@ -21,10 +22,9 @@ async function editRatingTransaction(ratingObj) {
                 const isRating = await getIsRating(trx, rating_id);
                 if (!isRating) reject('There is not a rating with that id.');
 
-                const ratingsList = await insertRating(trx, ratingObj);
+                const newRating = await insertRating(trx, ratingObj);
                 await trx.commit();
 
-                const newRating = ratingsList[0];
                 resolve(newRating);
             });
         } catch (error) {
@@ -39,6 +39,7 @@ async function editRating(ratingObj) {
         const newRating = await editRatingTransaction(ratingObj);
         return getDataReturn('newRating', newRating);
     } catch (error) {
+        console.log('error', error);
         return getErrorReturn('error', error);
     }
 }

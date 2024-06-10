@@ -88,7 +88,6 @@ async function deleteClient(client_id) {
 async function getClient(client_id) {
 
     const clientURL = getClientURL(client_id)
-
     return fetch(clientURL, {
         method: "GET",
         headers: {
@@ -99,9 +98,13 @@ async function getClient(client_id) {
     })
         .then(res => res.json())
         .then(data => {
+            console.log('data', data)
             if (data.ok) {
                 return (data)
+            } else {
+
             }
+
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -110,8 +113,7 @@ async function getClient(client_id) {
 }
 
 async function editClient(body) {
-    const clientURL = getClientURL()
-
+    const clientURL = getClientsURL()
     return fetch(clientURL, {
         method: "PUT",
         headers: {
@@ -121,7 +123,10 @@ async function editClient(body) {
         credentials: "include",
 
     })
-        .then(res => res.json())
+        .then(res => {
+            console.log('res', res)
+            return res.json()
+        })
         .then(data => {
             if (data.ok) {
                 return { message: 'success' }

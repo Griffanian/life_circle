@@ -4,9 +4,23 @@ const { getDataReturn, getErrorReturn } = require('../backendMethods/returners.j
 
 const CATEGORIES = globals.CATEGORIES;
 
+function getClientIDFromReq(req) {
+    let client_id;
+
+    if (req.params.client_id) {
+        client_id = req.params.client_id;
+    } else if (req.body.client_id) {
+        client_id = req.body.client_id;
+    } else {
+        throw new Error('No client id provided');
+    }
+
+    return client_id;
+}
+
 function getClientID(req) {
-    const { client_id } = req.params;
     try {
+        const client_id = getClientIDFromReq(req);
         validateID(client_id);
         return getDataReturn('clientId', { clientId: client_id });
     } catch (error) {
@@ -15,10 +29,10 @@ function getClientID(req) {
 };
 
 function getClientName(req) {
-    const { client_name } = req.body;
+    const client_name = req.body.client_name;
     try {
         validateClientName(client_name);
-        return getDataReturn('client_name', { client_name });
+        return getDataReturn('clientName', { "clientName": client_name });
     } catch (error) {
         return getErrorReturn(error);
     };
@@ -27,14 +41,29 @@ function getClientName(req) {
 function getClientParams(req) {
     const { client_id } = getClientID(req);
     const { client_name } = getClientName(req);
-    return {
+    const client_params = {
         client_id,
         client_name
     };
+    return getDataReturn('clientParams', client_params);
 };
 
+function getRatingIDFromReq(req) {
+    let rating_id;
+
+    if (req.params.rating_id) {
+        rating_id = req.params.rating_id;
+    } else if (req.body.rating_id) {
+        rating_id = req.body.rating_id;
+    } else {
+        throw new Error('No client id provided');
+    }
+
+    return rating_id;
+}
+
 function getRatingID(req) {
-    const { rating_id } = req.params;
+    const rating_id = getRatingIDFromReq(req);
     try {
         validateID(rating_id);
         return getDataReturn('ratingId', { ratingId: rating_id });
@@ -57,10 +86,11 @@ function getCategories(req) {
     const categories = {};
     try {
         for (const category of CATEGORIES) {
-            if (isNaN(req.body[category])) {
+            catValue = Number(req.body[category]);
+            if (!(catValue in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])) {
                 throw new Error(`Invalid value for ${category}`);
             }
-            categories[category] = req.body[category];
+            categories[category] = catValue;
         };
         return getDataReturn('categories', categories);
     } catch (error) {
@@ -79,7 +109,7 @@ function getNewRatingObj(req) {
     const categories = getCategories(req);
 
     const ratingObj = {
-        rating_date: ratingDateRes.ratingDate,
+        rating_date: ratingDateRes.rating_date,
         client_id: clientIDRes.client_id,
         ...categories
     };
@@ -92,10 +122,11 @@ function getRatingObj(req) {
     const ratingDateRes = getRatingDate(req);
     const categoriesRes = getCategories(req);
 
+    const { success, message, ...categories } = categoriesRes
     const ratingObj = {
-        ratingId: ratingIDRes.ratingId,
-        ratingDate: ratingDateRes.ratingDate,
-        categories: categoriesRes.categories
+        ratingId: ratingIDRes.rating_id,
+        ratingDate: ratingDateRes.rating_date,
+        ...categories
     };
 
     return getDataReturn('ratingObj', ratingObj);

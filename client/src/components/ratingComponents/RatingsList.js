@@ -32,7 +32,8 @@ export default function RatingList() {
 
             getClient(client_id_param)
                 .then(data => {
-                    if (data.suscess) {
+                    console.log('data', data)
+                    if (data.success) {
                         setClientName(data.client_name)
                     }
                 })

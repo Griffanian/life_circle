@@ -12,17 +12,20 @@ const ratingsRouter = express.Router();
 
 ratingsRouter.post('/', async (req, res) => {
     const newRatingObjRes = getNewRatingObj(req);
+    console.log('newRatingObjRes', newRatingObjRes);
+    const { success, message, ...newRatingObj } = newRatingObjRes;
     if (newRatingObjRes.success) {
-        const newRatingRes = await createRating(newRatingObjRes.rating_id);
+        const newRatingRes = await createRating(newRatingObj);
         return sendResponse(res, newRatingRes);
     };
     return sendResponse(res, newRatingObjRes);
 });
 
 ratingsRouter.put('/', async (req, res) => {
-    const ratingObjRes = getRatingObj(req); ß
+    const ratingObjRes = getRatingObj(req);
+    const { success, message, ...ratingObj } = ratingObjRes;
     if (ratingObjRes.success) {
-        const editedRatingRes = await editRating(ratingObjRes.rating_id);
+        const editedRatingRes = await editRating(ratingObj);
         return sendResponse(res, editedRatingRes);
     }
     return sendResponse(res, ratingObjRes);

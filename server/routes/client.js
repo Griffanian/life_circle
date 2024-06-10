@@ -18,7 +18,6 @@ clientRouter.get('/:client_id', async (req, res) => {
     };
 });
 
-
 clientRouter.delete('/:client_id', async function (req, res) {
     const clientIDRes = getClientID(req);
 

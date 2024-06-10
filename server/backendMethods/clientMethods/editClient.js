@@ -17,6 +17,7 @@ async function editClientTransaction(client_params) {
     return new Promise(async (resolve, reject) => {
         try {
             await db.transaction(async (trx) => {
+
                 const client_id = client_params.client_id
 
                 const isClient = await getIsClient(trx, client_id);
@@ -33,10 +34,11 @@ async function editClientTransaction(client_params) {
 
 async function editClient(client_params) {
     try {
+        console.log('client_params', client_params);
         validateClientParams(client_params);
 
         const editedClient = await editClientTransaction(client_params);
-
+        console.log('editedClient', editedClient);
         return getDataReturn('editedClient', {
             editedClient
         });

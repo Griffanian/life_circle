@@ -18,7 +18,7 @@ clientsRouter.get('/', async (req, res) => {
 
 clientsRouter.post('/', async (req, res) => {
     const clientNameRes = getClientName(req);
-    if (clientIDRes.success) {
+    if (clientNameRes.success) {
         const createClientRes = await createClient(clientNameRes.client_name);
         return sendResponse(res, createClientRes);
     };
@@ -26,9 +26,11 @@ clientsRouter.post('/', async (req, res) => {
 });
 
 clientsRouter.put('/', async (req, res) => {
+    console.log('req.body', req.body);
     const clientParamsRes = getClientParams(req);
+    const { success, message, ...clientParams } = clientParamsRes;
     if (clientParamsRes.success) {
-        const editClientRes = await editClient(clientParamsRes.client_params);
+        const editClientRes = await editClient(clientParams);
         return sendResponse(res, editClientRes);
     };
     return sendResponse(res, clientParamsRes);
