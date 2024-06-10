@@ -1,6 +1,6 @@
 const { db, validateClientName } = require('../dbTransactions');
 const { getIsClient } = require('../clientMethods/getIsClient');
-const { getDataReturn, getErrorReturn } = require('../../returners');
+const { getDataReturn, getErrorReturn } = require('../returners');
 
 
 async function insertClient(trx, client_name) {
@@ -13,16 +13,20 @@ async function insertClient(trx, client_name) {
 
 async function createClientTransaction(client_name) {
     return new Promise(async (resolve, reject) => {
-        await db.transaction(async (trx) => {
+        try {
+            await db.transaction(async (trx) => {
 
-            const isClient = await getIsClient(trx, client_name);
-            if (isClient) reject('Client already exists');
+                const isClient = await getIsClient(trx, client_name);
+                if (isClient) reject('Client already exists');
 
-            const insertedClient = await insertClient(trx, client_name);
-            resolve(insertedClient);
-        })
-    })
-}
+                const insertedClient = await insertClient(trx, client_name);
+                resolve(insertedClient);
+            });
+        } catch (error) {
+            reject(error);
+        };
+    });
+};
 
 async function createClient(client_name) {
     try {

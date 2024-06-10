@@ -1,21 +1,28 @@
+const express = require('express');
+
 const getRatingDB = require('../backendMethods/ratingMethods/getRatingDb.js');
 const deleteRating = require('../backendMethods/ratingMethods/deleteRating.js');
 const { sendResponse } = require('../backendMethods/responders.js');
-
-const express = require('express');
+const { getRatingID } = require('../backendMethods/helpers.js');
 
 const ratingRouter = express.Router();
 
 ratingRouter.get('/:rating_id', async (req, res) => {
-    const rating_id = req.params.rating_id;
-    const getRatingRes = await getRatingDB(rating_id);
-    return sendResponse(res, getRatingRes);
+    const ratingIDRes = getRatingID(req);
+    if (ratingIDRes.success) {
+        const getRatingRes = await getRatingDB(ratingIDRes.rating_id);
+        return sendResponse(res, getRatingRes);
+    };
+    return sendResponse(res, ratingIDRes);
 });
 
 ratingRouter.delete('/:rating_id', async function (req, res) {
-    const rating_id = req.params.rating_id;
-    const deleteRatingRes = await deleteRating(rating_id);
-    return sendResponse(res, deleteRatingRes);
+    const ratingIDRes = getRatingID(req);
+    if (ratingIDRes.success) {
+        const deleteRatingRes = await deleteRating(ratingIDRes.rating_id);
+        return sendResponse(res, deleteRatingRes);
+    };
+    return sendResponse(res, ratingIDRes);
 });
 
 module.exports = ratingRouter;

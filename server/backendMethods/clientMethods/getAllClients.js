@@ -1,4 +1,4 @@
-const { getDataReturn, getErrorReturn } = require('../../returners');
+const { getDataReturn, getErrorReturn } = require('../returners');
 const { db } = require('../dbTransactions');
 
 async function retrieveAllClients(trx) {
@@ -23,9 +23,7 @@ async function getAllClientsTransation() {
 async function getAllClients() {
     try {
         const clientsList = await getAllClientsTransation();
-        return getDataReturn('clientsList', {
-            'clientsList': clientsList
-        });
+        return getDataReturn('clientsList', { clientsList });
     } catch (error) {
         return getErrorReturn(error);
     }

@@ -47,7 +47,6 @@ export default function RadarChart({ ratings }) {
 
     const datasets = ratings.map((rating, index) => {
         const color = lineColors[index % 7]
-        console.log('color', color)
 
         return (
             {

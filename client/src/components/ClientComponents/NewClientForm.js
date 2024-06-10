@@ -7,21 +7,20 @@ export default function NewClientForm() {
 
     const navigate = useNavigate()
 
-    const [name, setName] = useState('')
+    const [clientName, setClientName] = useState('')
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        createClient({
-            client_name: name,
-        })
-            .then(data => {
-                if (data.ok === true) {
-                    navigate('/clients')
-                } else {
-                    console.log(data.error)
-                }
-            })
-    }
+        const bodyObj = {
+            client_name: clientName
+        };
+        const newClient = await createClient(bodyObj);
+        if (newClient.success) {
+            navigate('/clients')
+        } else {
+            console.log('Error:', newClient.error)
+        }
+    };
 
     return (
         <div className='mainBody'>
@@ -34,7 +33,7 @@ export default function NewClientForm() {
                 </div>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <p>Name</p>
-                    <input name="client name" value={name} placeholder='E.g. John Doe' onChange={(e) => setName(e.target.value)}></input>
+                    <input name="client name" value={clientName} placeholder='E.g. John Doe' onChange={(e) => setClientName(e.target.value)}></input>
                     <input type="submit" value="Submit" />
                 </form>
             </div>

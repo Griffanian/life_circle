@@ -29,9 +29,10 @@ export default function RatingList() {
                         setRatings(ratingsWithAverage);
                     }
                 })
+
             getClient(client_id_param)
                 .then(data => {
-                    if (data.ok) {
+                    if (data.suscess) {
                         setClientName(data.client_name)
                     }
                 })
@@ -70,10 +71,6 @@ export default function RatingList() {
             downloadLink.click();
         }
     };
-
-    useEffect(() => {
-        console.log('filteredRatings', filteredRatings);
-    }, [filteredRatings]);
 
     return (
         serverResponded ? (

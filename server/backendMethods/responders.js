@@ -1,7 +1,7 @@
 const { config } = require('./dbTransactions.js');
 
 function sendError(res, error, code = 500) {
-    console.log(error);
+    console.error(error);
     return res.status(code).send({
         ok: false,
         error

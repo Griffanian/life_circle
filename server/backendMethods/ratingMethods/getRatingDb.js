@@ -1,5 +1,5 @@
 const { db, globals } = require('../dbTransactions.js');
-const { getDataReturn, getErrorReturn } = require("../../returners.js");
+const { getDataReturn, getErrorReturn } = require("../returners.js");
 const CATEGORIES = globals.CATEGORIES;
 
 async function getIsRating(trx, rating_id) {

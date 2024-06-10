@@ -1,25 +1,29 @@
-const { getDataReturn, getErrorReturn } = require('../../returners');
+const { getDataReturn, getErrorReturn } = require('../returners');
 const { getIsRating } = require('./getIsRating');
 const { db } = require('../dbTransactions');
 
 async function deleteRatingTransaction(rating_id) {
     return new Promise(async (resolve, reject) => {
-        await db.transaction(async (trx) => {
+        try {
+            await db.transaction(async (trx) => {
 
-            const isRating = await getIsRating(trx, rating_id);
-            if (!isRating) reject('Rating does not exist');
+                const isRating = await getIsRating(trx, rating_id);
+                if (!isRating) reject('Rating does not exist');
 
-            const deletedRatingList = await trx('ratings')
-                .where({ rating_id: rating_id })
-                .del()
-                .returning('*');
+                const deletedRatingList = await trx('ratings')
+                    .where({ rating_id: rating_id })
+                    .del()
+                    .returning('*');
 
-            await trx.commit();
+                await trx.commit();
 
-            const deletedRating = deletedRatingList[0]
+                const deletedRating = deletedRatingList[0]
 
-            resolve(deletedRating)
-        });
+                resolve(deletedRating)
+            });
+        } catch (error) {
+            reject(error);
+        };
     });
 
 }

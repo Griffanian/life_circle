@@ -6,6 +6,7 @@
     "express-requests-logger": "^4.0.0",
     "jsonwebtoken": "^9.0.2",
     "knex": "^3.0.1",
+    "morgan": "^1.10.0",
     "nodemon": "^3.0.2",
     "path": "^0.12.7",
     "pg": "^8.11.3",

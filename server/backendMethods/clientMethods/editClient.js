@@ -1,4 +1,4 @@
-const { getDataReturn, getErrorReturn } = require('../../returners')
+const { getDataReturn, getErrorReturn } = require('../returners')
 const { db, validateClientParams } = require('../dbTransactions')
 const { getIsClient } = require('./getIsClient')
 
@@ -15,15 +15,19 @@ async function updateClient(trx, client_params) {
 
 async function editClientTransaction(client_params) {
     return new Promise(async (resolve, reject) => {
-        await db.transaction(async (trx) => {
-            const client_id = client_params.client_id
+        try {
+            await db.transaction(async (trx) => {
+                const client_id = client_params.client_id
 
-            const isClient = await getIsClient(trx, client_id);
-            if (!isClient) reject('Client does not exist');
+                const isClient = await getIsClient(trx, client_id);
+                if (!isClient) reject('Client does not exist');
 
-            const editedClient = await updateClient(trx, client_params);
-            resolve(editedClient);
-        });
+                const editedClient = await updateClient(trx, client_params);
+                resolve(editedClient);
+            });
+        } catch (error) {
+            reject(error);
+        };
     });
 };
 

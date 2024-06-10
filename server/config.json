@@ -31,6 +31,44 @@
             },
             "message": "User logged in successfully"
         },
+        "clientId": {
+            "dbName": {
+                "clientId": "client_id"
+            },
+            "message": "Validated client id successfully"
+        },
+        "clientName": {
+            "dbName": {
+                "clientName": "client_name"
+            },
+            "message": "Validated client name successfully"
+        },
+        "ratingId": {
+            "dbName": {
+                "ratingId": "rating_id"
+            },
+            "message": "Validated rating id successfully"
+        },
+        "ratingDate": {
+            "dbName": {
+                "ratingDate": "rating_date"
+            },
+            "message": "Validated rating date successfully"
+        },
+        "categories": {
+            "dbName": {
+                "categories": "categories"
+            },
+            "message": "Validated categories successfully"
+        },
+        "ratingObj": {
+            "dbName": {
+                "ratingId": "rating_id",
+                "ratingDate": "rating_date",
+                "categories": "categories"
+            },
+            "message": "Validated rating object successfully"
+        },
         "clientsList": {
             "dbName": {
                 "clientsList": "client_list"

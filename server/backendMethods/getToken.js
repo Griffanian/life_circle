@@ -1,4 +1,4 @@
-const { getDataReturn, getErrorReturn } = require("../returners");
+const { getDataReturn, getErrorReturn } = require("./returners");
 const { sign } = require('jsonwebtoken');
 
 function getIsUserObjValid(env, userObj) {

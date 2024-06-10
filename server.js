@@ -6,6 +6,8 @@ const fs = require('fs');
 const config = JSON.parse(fs.readFileSync('./server/config.json', 'utf-8'));
 const path = require('path');
 const apiRouter = require('./server/routes/api.js');
+const morgan = require("morgan");
+app.use(morgan('dev'));
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))

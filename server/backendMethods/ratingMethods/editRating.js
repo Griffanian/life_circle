@@ -1,6 +1,6 @@
 const { db } = require('../dbTransactions');
 const { getIsRating } = require("./getIsRating");
-const { getDataReturn, getErrorReturn } = require("../../returners");
+const { getDataReturn, getErrorReturn } = require("../returners");
 
 async function insertRating(trx, ratingObj) {
     const ratingsList = await trx('ratings')
@@ -13,19 +13,23 @@ async function insertRating(trx, ratingObj) {
 
 async function editRatingTransaction(ratingObj) {
     return new Promise(async (resolve, reject) => {
-        await db.transaction(async (trx) => {
+        try {
+            await db.transaction(async (trx) => {
 
-            const rating_id = ratingObj.rating_id;
+                const rating_id = ratingObj.rating_id;
 
-            const isRating = await getIsRating(trx, rating_id);
-            if (!isRating) reject('There is not a rating with that id.');
+                const isRating = await getIsRating(trx, rating_id);
+                if (!isRating) reject('There is not a rating with that id.');
 
-            const ratingsList = await insertRating(trx, ratingObj);
-            await trx.commit();
+                const ratingsList = await insertRating(trx, ratingObj);
+                await trx.commit();
 
-            const newRating = ratingsList[0];
-            resolve(newRating);
-        })
+                const newRating = ratingsList[0];
+                resolve(newRating);
+            });
+        } catch (error) {
+            reject(error);
+        };
     })
 }
 
@@ -35,7 +39,7 @@ async function editRating(ratingObj) {
         const newRating = await editRatingTransaction(ratingObj);
         return getDataReturn('newRating', newRating);
     } catch (error) {
-        console.log('error', error);
+        // console.log('error', error);
         return getErrorReturn('error', error);
     }
 }

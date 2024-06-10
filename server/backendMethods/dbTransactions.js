@@ -8,16 +8,25 @@ db_options.connection.password = process.env.DB_PASSWORD;
 const db = require('knex')(db_options);
 
 function validateClientName(client_name) {
-    if (!(client_name) || typeof client_name !== 'string') {
+    if (typeof client_name !== 'string') {
         throw new Error('Invalid client name');
+    };
+    return;
+};
+
+function validateID(id) {
+    const parsedID = parseFloat(id);
+    if (typeof parsedID !== 'number' || isNaN(parsedID)) {
+        throw new Error(`The id: ${id} is not a valid number`);
     }
     return;
-}
+};
 
-function validateClientID(client_id) {
-    if (!(client_id) || typeof client_id !== 'number') {
-        throw new Error('Invalid client ID');
-    }
+function validateDate(date) {
+    const parsedDate = Date.parse(date);
+    if (isNaN(parsedDate)) {
+        throw new Error('Invalid date');
+    };
     return;
 }
 
@@ -26,12 +35,22 @@ function validateClientParams(client_params) {
         if (key === 'client_name') {
             validateClientName(client_params[key]);
         } else if (key === 'client_id') {
-            validateClientID(client_params[key]);
+            validateID(client_params[key]);
         } else {
             throw new Error('Invalid client parameter');
-        }
-    }
-}
+        };
+    };
+    return;
+};
 
 
-module.exports = { db, config, globals, validateClientName, validateClientParams };
+
+module.exports = {
+    db,
+    config,
+    globals,
+    validateID,
+    validateClientName,
+    validateClientParams,
+    validateDate
+};

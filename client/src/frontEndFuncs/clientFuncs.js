@@ -1,4 +1,4 @@
-import getDataReturn from '../';
+import { getErrorReturn, getDataReturn } from "./returners";
 
 function getClientURL(client_id) {
     return new URL(`api/client/${client_id}`, global.config.BASE_URL)
@@ -24,16 +24,16 @@ async function _createClient(bodyObj) {
 async function createClient(bodyObj) {
     try {
         const createdClient = await _createClient(bodyObj);
-        const clientRes = await createdClient.json();
-        return clientRes;
+        const createdClientJson = await createdClient.json();
+        return getDataReturn(createdClientJson);
     } catch (error) {
-        console.error('Error:', error);
+        return getErrorReturn(error);
     };
 }
 
 async function getClientList() {
     try {
-        const client_url = getClientURL()
+        const client_url = getClientsURL()
 
         const client_list = await fetch(client_url, {
             method: "GET",
@@ -43,12 +43,10 @@ async function getClientList() {
             credentials: "include",
         })
             .then(res => {
-                if (!res.ok) {
-                    throw new Error('Network response was not ok');
-                }
                 return res.json();
             })
             .then(data => {
+                console.log(data)
                 if (data && data.client_list) {
                     return data.client_list;
                 } else {

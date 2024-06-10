@@ -41,7 +41,7 @@ async function getRating(rating_id) {
 }
 
 async function getRatinglist(client_id) {
-    const rating_url = new URL(`api/ratings/${client_id}`, global.config.BASE_URL)
+    const rating_url = new URL(`api/client/${client_id}`, global.config.BASE_URL)
     return fetch(rating_url, {
         method: "GET",
         headers: {
@@ -52,9 +52,7 @@ async function getRatinglist(client_id) {
     })
         .then(res => res.json())
         .then(data => {
-            if (data.ok) {
-                return data;
-            }
+            return data;
         })
         .catch((error) => {
             console.error('Error:', error);
