@@ -60,12 +60,10 @@ async function getIsLoggedIn() {
 
 async function login(username, password) {
     const loginUrl = new URL('api/login', global.config.BASE_URL)
-    console.log('loginUrl', loginUrl)
     const bodyObj = {
         username,
         password
     }
-    console.log('bodyObj', bodyObj)
     return fetch(loginUrl, {
         method: "POST",
         headers: {
