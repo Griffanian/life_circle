@@ -76,7 +76,6 @@ async function login(username, password) {
     })
         .then(res => res.json())
         .then(data => {
-            console.log('res for login POST data', data)
             return data
         })
         .catch((error) => {
