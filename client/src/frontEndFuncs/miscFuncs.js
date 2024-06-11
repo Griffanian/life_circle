@@ -60,12 +60,12 @@ async function getIsLoggedIn() {
 
 async function login(username, password) {
     const loginUrl = new URL('api/login', global.config.BASE_URL)
-
+    console.log('loginUrl', loginUrl)
     const bodyObj = {
         username,
         password
     }
-
+    console.log('bodyObj', bodyObj)
     return fetch(loginUrl, {
         method: "POST",
         headers: {
@@ -78,6 +78,7 @@ async function login(username, password) {
     })
         .then(res => res.json())
         .then(data => {
+            console.log('res for login POST data', data)
             return data
         })
         .catch((error) => {

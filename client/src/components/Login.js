@@ -10,8 +10,10 @@ export default function Login() {
         e.preventDefault();
         login(userName, password)
             .then((res) => {
+                console.log('login res', res)
                 if (res.ok) {
                     // window.location.reload()
+
                 } else {
                     setError(res.message)
                 }
