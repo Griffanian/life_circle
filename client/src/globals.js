@@ -12,15 +12,15 @@ module.exports = global.config = {
         "hobbies"
     ],
     "PRETTY_CATEGORIES": [
-    "Energy",
-    "Work/Income",
-    "Partner",
-    "Next Gen",
-    "Friends",
-    "Life Attitude",
-    "Family",
-    "Intellectual",
-    "Giving Back",
-    "Hobbies"],
-    "BASE_URL": "http://localhost:8080"
+        "Energy",
+        "Work/Income",
+        "Partner",
+        "Next Gen",
+        "Friends",
+        "Life Attitude",
+        "Family",
+        "Intellectual",
+        "Giving Back",
+        "Hobbies"],
+    "BASE_URL": "https://circle-of-life-b74i.onrender.com/"
 }
