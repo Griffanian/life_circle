@@ -26,7 +26,6 @@ clientsRouter.post('/', async (req, res) => {
 });
 
 clientsRouter.put('/', async (req, res) => {
-    console.log('req.body', req.body);
     const clientParamsRes = getClientParams(req);
     const { success, message, ...clientParams } = clientParamsRes;
     if (clientParamsRes.success) {

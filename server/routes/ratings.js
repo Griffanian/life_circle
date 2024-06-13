@@ -12,7 +12,7 @@ const ratingsRouter = express.Router();
 
 ratingsRouter.post('/', async (req, res) => {
     const newRatingObjRes = getNewRatingObj(req);
-    console.log('newRatingObjRes', newRatingObjRes);
+    console.log('newRatingObjRes:', newRatingObjRes);
     const { success, message, ...newRatingObj } = newRatingObjRes;
     if (newRatingObjRes.success) {
         const newRatingRes = await createRating(newRatingObj);

@@ -86,10 +86,12 @@ function getCategories(req) {
     const categories = {};
     try {
         for (const category of CATEGORIES) {
-            catValue = Number(req.body[category]);
-            if (!(catValue in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])) {
-                throw new Error(`Invalid value for ${category}`);
+            const catValue = parseInt(req.body[category], 10);
+
+            if (![0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].includes(catValue)) {
+                throw new Error(`Invalid value ${req.body[category]} for ${category}`);
             }
+
             categories[category] = catValue;
         };
         return getDataReturn('categories', categories);
