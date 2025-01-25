@@ -5,7 +5,11 @@
         "connection": {
             "host": "circle-of-life-circle-of-life.e.aivencloud.com",
             "user": "avnadmin",
-            "database": "defaultdb"
+            "database": "defaultdb",
+            "port": 14313,
+            "ssl": {
+                "rejectUnauthorized": false
+            }
         }
     },
     "cors_options": {
