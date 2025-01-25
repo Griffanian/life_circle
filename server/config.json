@@ -3,9 +3,9 @@
         "client": "pg",
         "version": "7.2",
         "connection": {
-            "host": "surus.db.elephantsql.com",
-            "user": "keocaula",
-            "database": "keocaula"
+            "host": "circle-of-life-circle-of-life.e.aivencloud.com",
+            "user": "avnadmin",
+            "database": "defaultdb"
         }
     },
     "cors_options": {
